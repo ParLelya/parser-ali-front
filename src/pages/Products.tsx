@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Products: React.FC = () => {
-  return (
-	<div></div>
-  )
+	return (
+		<div></div>
+	)
 }
 
 export default Products

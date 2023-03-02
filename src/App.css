@@ -1,3 +1,27 @@
+body {
+	background-color: rgb(221, 73, 19);
+	font-family: 'Ubuntu', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
 .App {
-  text-align: center;
+  	text-align: center;
+	width: 90vw;
+	height: 98vh;
+	background-color: beige;
+	border-radius: 30px;
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.menu {
+	width: 60vw;
+	border: none;
+	font-size: 2rem;
 }
