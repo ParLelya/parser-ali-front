@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Menu: React.FC = () => {
 	return (
-		<div className="collection menu">
+		<div className="collection menu" style={{width: '100%'}}>
 			<Link
 				to="/parse"
 				className="collection-item amber-text text-darken-3 transparent"
