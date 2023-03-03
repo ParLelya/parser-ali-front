@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,7 +14,7 @@ const Parser: React.FC = () => {
 		<form onSubmit={stopReload}>
 			<div className="row" >
 				<div className="input-field col s12 m8" style={{ width: '100%' }}>
-					<input id="url" type="text" />
+					<input id="url" type="text" required={true} />
 					<label htmlFor="url">Вставьте ссылку на страницу, которую хотите парсить</label>
 				</div>
 			</div>

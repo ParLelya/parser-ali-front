@@ -21,13 +21,17 @@ body {
 }
 
 header {
-	width: 95%;
+	width: 100%;
 	align-self: flex-start;
 }
 
 .navbar {
 	width: 100%;
 	box-shadow: none;
+}
+
+.nav-to-cab {
+	border-radius: 0 30px 0 0;
 }
 
 main {
