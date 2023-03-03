@@ -6,15 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 const Parser: React.FC = () => {
 
 	const [value, setValue] = useState('')
-
+	//TODO: сделать отработку хука только по изменению поля инпута
 	useEffect(() => {
-		axios.post(`${value}/scrapy/`, {obj: {}})
-		.then(() => {
-			toast.success('Успешно спарсено')
-		})
-		.catch((error) => {
-			toast.error(`При парсинге произошла ошибка: ${error.message}`)
-		})
+		axios.post(`${value}/scrapy/`, { obj: {} })
+			.then(() => {
+				toast.success('Успешно спарсено')
+			})
+			.catch((error) => {
+				toast.error(`При парсинге произошла ошибка: ${error.message}`)
+			})
 	}, [value])
 
 	const stopReload = (e: React.FormEvent<HTMLFormElement>) => e.preventDefault()
@@ -22,7 +22,7 @@ const Parser: React.FC = () => {
 	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value)
 	}
-	
+
 	return (
 		<form onSubmit={stopReload}>
 			<div className="row" >
