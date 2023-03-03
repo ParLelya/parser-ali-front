@@ -5,16 +5,35 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Parser: React.FC = () => {
 
-	const stopReload = ((e: React.FormEvent<HTMLFormElement>) => e.preventDefault())
-	const handleSubmit = () => {
-		toast.success('Успешно спарсено')
-		// toast.error('При парсинге произошла ошибка')
+	const [value, setValue] = useState('')
+
+	useEffect(() => {
+		axios.post(`${value}/scrapy/`, {obj: {}})
+		.then(() => {
+			toast.success('Успешно спарсено')
+		})
+		.catch((error) => {
+			toast.error(`При парсинге произошла ошибка: ${error.message}`)
+		})
+	}, [value])
+
+	const stopReload = (e: React.FormEvent<HTMLFormElement>) => e.preventDefault()
+
+	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(event.target.value)
 	}
+	
 	return (
 		<form onSubmit={stopReload}>
 			<div className="row" >
 				<div className="input-field col s12 m8" style={{ width: '100%' }}>
-					<input id="url" type="text" required={true} />
+					<input
+						id="url"
+						type="text"
+						required={true}
+						value={value}
+						onChange={onChangeInput}
+					/>
 					<label htmlFor="url">Вставьте ссылку на страницу, которую хотите парсить</label>
 				</div>
 			</div>
@@ -22,7 +41,6 @@ const Parser: React.FC = () => {
 			<button
 				className="btn waves-effect waves-light amber"
 				type="submit"
-				onClick={handleSubmit}
 			>Спарсить
 				<i className="material-icons right">send</i>
 			</button>
