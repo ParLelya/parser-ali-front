@@ -89,6 +89,14 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 	visibility: visible;
 }
 
+iframe {
+	visibility: hidden;
+}
+
+iframe.visisble{
+	visibility: visible;
+}
+
 footer {
 	width: 100%;
 	align-self: flex-end;

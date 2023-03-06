@@ -5,31 +5,28 @@ import Loader from '../components/Loader'
 import Item from '../components/Item'
 
 const Products: React.FC = () => {
-
-	const productsBaseUrl: string = ''
 	const [isLoading, setIsLoading] = useState(true)
-	//TODO: типизировать стейт продукта с интерфейсом IProductItem
-	const [products, setProducts] = useState([])
+	const defaultItems: IProductItem[] = []
+	const [products, setProducts]: [IProductItem[], (items: IProductItem[]) => void] = useState(defaultItems)
 
 	useEffect(() => {
-		axios.get<IProductItem>(`${productsBaseUrl}/products`)
-		.then(response => {
-			//TODO: подгружать дату в компоненту Item
-			console.log(response.data)
-			setIsLoading(false)
-		})
-		.catch(error => console.log(error.message))
+		axios.get<IProductItem[]>(`https://parserali.me/api/products`)
+			.then(response => {
+				setProducts(response.data)
+				setIsLoading(false)
+			})
+			.catch(error => console.log(error.message))
 	}, [])
 
+	const items: JSX.Element[] = products.map((obj: IProductItem) => <Item {...obj} key={obj.id} />)
+	
 	return (
 		<div className='products'>
 			{
 				isLoading
-				? <Loader/>
-				: <Item/>
+					? <Loader />
+					: items
 			}
-			{/* TODO: итерация по массиву продуктов 
-			products.map() вместо одной компоненты*/}
 		</div>
 	)
 }
