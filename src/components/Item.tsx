@@ -12,6 +12,7 @@ const Item: React.FC<IProductItem> = (props) => {
 			className="product-item"
 			to={`/products/${id}`}
 		>
+			{/* TODO: доставать первую картинку из массива */}
 			<img src={images} alt='' />
 			<h6 className="amber-text text-darken-3">{name}</h6>
 		</Link>

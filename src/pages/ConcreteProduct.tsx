@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router';
 import { IProductItem } from '../types/interface';
+// import Carousel from '../components/Carousel';
 
 const ConcreteProduct: React.FC = () => {
 
@@ -18,7 +19,9 @@ const ConcreteProduct: React.FC = () => {
 
 	return (
 		<div className='product-item'>
-			<img src={item.images[0]} alt='' />
+			{/* TODO: реализовать карусель из картинок, вытягивая ссылки по ключу */}
+			<img src={item.images} alt='' />
+			{/* <Carousel images={item.images}/> */}
 			<div>
 				<h6 className="brown-text text-darken-4">{item.name}</h6>
 				<p className="brown-text text-darken-2">{item.parameters}</p>
