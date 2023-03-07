@@ -15,7 +15,7 @@ const ConcreteProduct: React.FC = () => {
 				setItem(response.data)
 			})
 			.catch(error => console.log(error.message))
-	})
+	}, [id])
 
 	return (
 		<div className='product-item'>

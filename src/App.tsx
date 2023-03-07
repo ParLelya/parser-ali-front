@@ -21,7 +21,7 @@ const App: React.FC = () => {
 				<Routes>
 					<Route path="/" element={<Main />} />
 					<Route path="/parse" element={<Parser />} />
-					<Route path="/products" element={<Products />} >
+					<Route path="/products/*" element={<Products />} >
 						<Route path=":id" element={<ConcreteProduct />} />
 					</Route>
 					<Route path="/cabinet" element={<Cabinet />} />

@@ -94,24 +94,20 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 }
 
 .products {
-	display: flex;
-	width: 90%;
+	width: 100%;
 	cursor: pointer;
 }
 
 .product-item {
-	margin: 10px;
-	width: 100%;
+	width: 90%;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .product-item img {
-	min-width: 100px;
-	max-width: 300px;
-	min-height: 100px;
-	max-height: 300px;
-	background-color: beige;
-	border-radius: 15px;
+	width: 150px;
+	height: 150px;
 }
 
 footer {
