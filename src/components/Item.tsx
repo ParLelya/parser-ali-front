@@ -1,13 +1,12 @@
 import React from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { IProductItem } from '../types/interface'
 // import Carousel from './Carousel'
 
 const Item: React.FC<IProductItem> = (props) => {
 
 	const { id, name, images } = props
-	// const router = useNavigate()
-
+	//TODO: компонент не отрисовывается, но ссылка обновляется, надо думать как фиксить
 	return (
 		<Link
 			className="product-item"
