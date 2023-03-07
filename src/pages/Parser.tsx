@@ -4,6 +4,12 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+interface IResponse {
+	task_id: string
+	unique_id: string
+	status: string
+}
+
 const Parser: React.FC = () => {
 
 	const [value, setValue] = useState('')
@@ -15,13 +21,13 @@ const Parser: React.FC = () => {
 	}
 
 	const parse = () => {
-		axios.post(`${value}/scrape/`, {
-			"task_id": "",
-			"unique_id": "",
-			"status": ""
-		  })
-			.then(() => {
-				toast.success('Успешно спарсено')
+		axios.post<IResponse>(`${value}/scrape/`, { "url": '' })
+			.then((response) => {
+				if (response.data.task_id) {
+					toast.success('Успешно спарсено')
+				} else {
+					throw new Error()
+				}
 			})
 			.catch((error) => {
 				toast.error(`При парсинге произошла ошибка: ${error.message}`)
