@@ -39,6 +39,10 @@ main {
 	justify-content: center;
 }
 
+main.valign-wrapper {
+	width: 100%;
+}
+
 .menu {
 	width: 60vw;
 	border: none;
@@ -89,12 +93,25 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 	visibility: visible;
 }
 
-iframe {
-	visibility: hidden;
+.products {
+	display: flex;
+	width: 90%;
+	cursor: pointer;
 }
 
-iframe.visisble{
-	visibility: visible;
+.product-item {
+	margin: 10px;
+	width: 100%;
+	display: flex;
+}
+
+.product-item img {
+	min-width: 100px;
+	max-width: 300px;
+	min-height: 100px;
+	max-height: 300px;
+	background-color: beige;
+	border-radius: 15px;
 }
 
 footer {
