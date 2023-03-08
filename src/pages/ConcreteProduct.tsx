@@ -5,6 +5,103 @@ import { IProductItem } from '../types/interface';
 // import Carousel from '../components/Carousel';
 
 const ConcreteProduct: React.FC = () => {
+	const [params, setParams]: any = useState([])
+	// const [color, setColor] = useState(0)
+	// const [size, setSize] = useState(0)
+	// const [delivery, setDelivery] = useState(0)
+
+	// titles.map((value: string, id: number) => {
+	// 	return (
+	// 		<ul
+	// 			key={id}
+	// 		>
+	// 			<span>{value}</span>
+	// 			{
+	// 				title.toLowerCase().includes('цвет') &&
+	// 				infos.map((name: string, id: number) => {
+	// 					return <li
+	// 						key={id}
+	// 						onClick={() => setColor(id)}
+	// 						className={color === id ? 'active' : ''}
+	// 					>{color[name]}</li>
+	// 				})
+	// 			}
+	// 			{
+	// 				title.toLowerCase().includes('доставка') &&
+	// 				infos.map((name: string, id: number) => {
+	// 					return <li
+	// 						key={id}
+	// 						onClick={() => setDelivery(id)}
+	// 						className={delivery === id ? 'active' : ''}
+	// 					>{name}</li>
+	// 				})
+	// 			}
+	// 			{
+	// 				title.toLowerCase().includes('длина') &&
+	// 				infos.map((name: string, id: number) => {
+	// 					return <li
+	// 						key={id}
+	// 						onClick={() => setSize(id)}
+	// 						className={size === id ? 'active' : ''}
+	// 					>{name}</li>
+	// 				})
+	// 			}
+	// 		</ul>
+	// 	)
+	// })
+
+	// const obj = [
+	// 	{
+	// 		'title': 'Цвет',
+	// 		'info': [
+	// 			{
+	// 				'name': 'Red Micro USB',
+	// 				'id': '337948'
+	// 			},
+	// 			{
+	// 				'name': 'Green Micro USB',
+	// 				'id': '337907'
+	// 			},
+	// 			{
+	// 				'name': 'Blue Micro USB',
+	// 				'id': '337905'
+	// 			},
+	// 			{
+	// 				'name': 'Colorful Micro USB',
+	// 				'id': '337910'
+	// 			},
+	// 			{
+	// 				'name': 'Red Type C',
+	// 				'id': '337913'
+	// 			},
+	// 			{
+	// 				'name': 'Green Type C',
+	// 				'id': '337915'
+	// 			},
+	// 			{
+	// 				'name': 'Blue Type C',
+	// 				'id': '337933'
+	// 			},
+	// 			{
+	// 				'name': 'Colorful Type C',
+	// 				'id': '337927'
+	// 			}
+	// 		]
+	// 	},
+	// 	{
+	// 		'title': 'Длина',
+	// 		'info': [
+	// 			{
+	// 				'name': '1 м',
+	// 				'id': '389812'
+	// 			},
+	// 			{
+	// 				'name': '2 м',
+	// 				'id': '389806'
+	// 			}
+	// 		]
+	// 	}]
+
 
 	const { id } = useParams()
 	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '' })
@@ -26,6 +123,18 @@ const ConcreteProduct: React.FC = () => {
 				// console.log(parsedParameters) 
 				const url = parsedImages[0].image
 
+				const titles = []
+				for (let i = 0; i < parsedParameters.length; i++) {
+					titles.push(parsedParameters[i]['title'])
+				}
+				console.log(titles);
+
+				const infos = []
+				for (let i = 0; i < parsedParameters.length; i++) {
+					infos.push(parsedParameters[i]['info'])
+				}
+				console.log(infos);
+
 				const item: IProductItem = {
 					id: Number(id),
 					name: name,
@@ -35,7 +144,6 @@ const ConcreteProduct: React.FC = () => {
 					additional_parameters: additional_parameters
 				}
 				setItem(item)
-
 			})
 			.catch(error => console.log(error.message))
 	}, [id])
