@@ -10,7 +10,7 @@ body {
 .App {
   	text-align: center;
 	width: 90vw;
-	height: 98vh;
+	min-height: 98vh;
 	background-color: white;
 	border-radius: 30px;
 	margin-top: 5px;
@@ -35,12 +35,15 @@ header {
 }
 
 main {
-    flex: 1 0 auto;
+	display: flex;
+	flex: 1 0 auto;
 	justify-content: center;
+	align-items: center;
 }
 
 main.valign-wrapper {
 	width: 100%;
+	min-height: 100%;
 }
 
 .menu {
@@ -108,6 +111,18 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 .product-item img {
 	width: 150px;
 	height: 150px;
+}
+
+.card-image img{
+	margin-top: 20px;
+	height: 600px;
+	object-fit: contain;
+}
+
+iframe {
+	width: 100%;
+	height: 90%;
+	margin-top: 30px;
 }
 
 footer {
