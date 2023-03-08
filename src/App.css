@@ -43,7 +43,7 @@ main {
 
 main.valign-wrapper {
 	width: 100%;
-	min-height: 90vh;
+	min-height: 90%;
 }
 
 .menu {
@@ -108,7 +108,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 	align-items: center;
 }
 
-.product-item img {
+.product-item .card-image .main-product-image {
 	width: 150px;
 	height: 150px;
 }
@@ -124,7 +124,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 
 iframe {
 	border: 1px solid grey;
-	
+
 	width: 100%;
 	height: 80%;
 	margin-top: 30px;

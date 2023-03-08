@@ -15,7 +15,7 @@ const Item: React.FC<IProductItem> = (props) => {
 		>
 			<div className="card horizontal ">
 				<div className="card-image">
-					<img src={url} alt='' />
+					<img className="main-product-image" src={url} alt='' />
 				</div>
 				<div className="card-stacked">
 					<div className="card-content">
