@@ -21,7 +21,7 @@ const Parser: React.FC = () => {
 	}
 
 	const parse = () => {
-		axios.post<IResponse>(`https://parserali.me/api/scrape/${value}/`, { "url": '' })
+		axios.post<IResponse>('https://parserali.me/api/scrape/', { "url": value })
 			.then((response) => {
 				if (response.data.task_id) {
 					toast.success('Успешно спарсено')
