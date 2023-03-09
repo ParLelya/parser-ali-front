@@ -69,7 +69,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 }
 
 .products {
-	width: 96%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -98,7 +98,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 }
 
 .product-item {
-	width: 100%;
+	width: 96%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -113,6 +113,10 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 .product-item .card-image img{
 	height: 30rem;
 	object-fit: contain;
+}
+
+.card.horizontal {
+	width: 100%;
 }
 
 .card .card-content p {
