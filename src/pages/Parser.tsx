@@ -25,6 +25,7 @@ const Parser: React.FC = () => {
 			.then((response) => {
 				if (response.data.task_id) {
 					toast.success('Успешно спарсено')
+					setValue('')
 				} else {
 					throw new Error()
 				}
