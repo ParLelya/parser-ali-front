@@ -65,7 +65,7 @@ const ConcreteProduct: React.FC = () => {
 									<ul key={index}>
 										<span>{title}</span><br/>
 										{
-											<Parameters index={index}/>
+											// <Parameters index={index}/>
 										}
 									</ul>
 								)
