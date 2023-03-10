@@ -17,6 +17,7 @@ const ConcreteProduct: React.FC = () => {
 	const { id } = useParams()
 	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '' })
 	const [param, setParam] = useState<IParamsObj[]>()
+	const [active, setActive] = useState('')
 
 	useEffect(() => {
 		axios.get<IProductItem[]>(`https://parserali.me/api/products/${id}/`)
@@ -69,7 +70,13 @@ const ConcreteProduct: React.FC = () => {
 											{item.info.map((detail, id) => (
 												<li
 													key={id}
-													className='parameter'
+													onClick={() => {
+														setActive(String(index) + String(id))
+													}}
+													className={active === String(index) + String(id)
+														? 'parameter selected'
+														: 'parameter'
+													}
 												>
 													{detail.name}
 												</li>
@@ -94,7 +101,7 @@ const ConcreteProduct: React.FC = () => {
 				</span>
 				
 			</div> */}
-		</div>
+		</div >
 	)
 }
 

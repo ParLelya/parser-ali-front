@@ -135,6 +135,12 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 	margin: 5px;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 	border-radius: 5px;
+	cursor: pointer;
+} 
+
+.parameter.selected {
+	border: 1px solid orangered;
+	background-color: orange;
 } 
 
 iframe {
