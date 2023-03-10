@@ -13,13 +13,13 @@ const Item: React.FC<IProductItem> = (props) => {
 			className="product-item"
 			to={`/products/${id}`}
 		>
-			<div className="card horizontal ">
+			<div className="card horizontal">
 				<div className="card-image">
 					<img className="main-product-image" src={url} alt='' />
 				</div>
 				<div className="card-stacked">
 					<div className="card-content">
-						<h6 className="amber-text text-darken-3">{name}</h6>
+						<h6 className="amber-text text-darken-3" style={{fontSize: '1rem'}}>{name}</h6>
 					</div>
 					{/* <div className="card-action">
 							<a href="#">This is a link</a>

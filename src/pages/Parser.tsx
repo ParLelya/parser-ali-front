@@ -45,6 +45,7 @@ const Parser: React.FC = () => {
 						required={true}
 						value={value}
 						onChange={onChangeInput}
+						style={{padding: '10px 15px'}}
 					/>
 					<label htmlFor="url">Вставьте ссылку на страницу, которую хотите парсить</label>
 				</div>
