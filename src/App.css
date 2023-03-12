@@ -1,6 +1,7 @@
 body {
 	background-color: rgb(221, 73, 19);
 	font-family: 'Ubuntu', sans-serif;
+	color: #351BA9;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,11 +19,13 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+	color: #351BA9 !important;
 }
 
 header {
 	width: 100%;
 	align-self: flex-start;
+	color: #351BA9 !important;
 }
 
 .navbar {
@@ -31,6 +34,7 @@ header {
 }
 
 .nav-to-cab {
+	color: #351BA9 !important;
 	border-radius: 0 30px 0 0;
 }
 
@@ -39,6 +43,7 @@ main {
 	/* flex: 1 0 auto; */
 	justify-content: center;
 	align-items: center;
+	color: #351BA9 !important;
 }
 
 main.valign-wrapper {
@@ -50,6 +55,7 @@ main.valign-wrapper {
 	width: 60vw;
 	border: none;
 	font-size: 2rem;
+	color: #351BA9 !important;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -59,16 +65,21 @@ form {
 	width: 80%;
 }
 
+button {
+	border-radius: 6px;
+}
+
 input[type=text]:not(.browser-default):focus:not([readonly]) {
-	box-shadow: 0 1px 0 0 #ffc107;
-	border-bottom: 1px solid #ff9800;
+	box-shadow: 0 1px 0 0 #5b3ddf;
+	border-bottom: 1px solid #351BA9;
 }
 
 input[type=text]:not(.browser-default):focus:not([readonly])+label {
-	color: #ff9800;
+	color: #351BA9 !important;
 }
 
 .products {
+	color: #351BA9 !important;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -106,8 +117,8 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 }
 
 .product-item .card-image .main-product-image {
-	width: 150px;
-	height: 150px;
+	width: 15rem;
+	height: 15rem;
 }
 
 .product-item .card-image img{
@@ -121,6 +132,14 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 
 .card .card-content p {
 	margin-top: 2rem;
+}
+.card-action {
+	cursor: default;
+}
+.card-action button:hover {
+	color: #bf360c !important;
+	background-color: transparent;
+	cursor: pointer;
 }
 .product-info {
 	display: flex;
@@ -139,8 +158,8 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 } 
 
 .parameter.selected {
-	border: 1px solid orangered;
-	background-color: orange;
+	border: 1px solid #351BA9;
+	background-color: #351ba961;
 } 
 
 iframe {
@@ -151,6 +170,7 @@ iframe {
 }
 
 footer {
+	color: #351BA9 !important;
 	width: 100%;
 	align-self: flex-end;
 }

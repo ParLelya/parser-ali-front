@@ -24,7 +24,7 @@ const Parser: React.FC = () => {
 		axios.post<IResponse>('https://parserali.me/api/scrape/', { "url": value })
 			.then((response) => {
 				if (response.data.task_id) {
-					toast.success('Успешно спарсено')
+					toast.success('Успешно отправлено на парсинг')
 					setValue('')
 				} else {
 					throw new Error()
@@ -52,7 +52,8 @@ const Parser: React.FC = () => {
 			</div>
 
 			<button
-				className="btn waves-effect waves-light amber"
+				className="btn waves-effect waves-light"
+				style={{backgroundColor: '#351BA9'}}
 				type="submit"
 				onClick={parse}
 			>Спарсить
@@ -69,7 +70,7 @@ const Parser: React.FC = () => {
 				pauseOnFocusLoss
 				draggable
 				pauseOnHover
-				theme="dark"
+				theme="light"
 			/>
 		</form>
 	)

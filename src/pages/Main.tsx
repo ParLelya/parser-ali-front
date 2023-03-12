@@ -6,14 +6,14 @@ const Main: React.FC = () => {
 		<div className="collection menu" style={{ width: '100%' }}>
 			<Link
 				to="/parse"
-				className="collection-item amber-text text-darken-3 transparent"
+				className="collection-item transparent"
 				style={{ margin: '1rem 0', paddingBottom: '2rem' }}
 			>
 				Парсинг
 			</Link>
 			<Link
 				to="/products"
-				className="collection-item amber-text text-darken-3 transparent"
+				className="collection-item transparent"
 				style={{ margin: '1rem 0' }}
 			>
 				Мои продукты

@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { IProductItem } from '../types/interface'
+import { IProduct } from '../types/interface'
 import Item from '../components/Item'
 import Loader from '../components/Loader';
 
 const Products: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true)
-	const defaultItems: IProductItem[] = []
-	const [products, setProducts]: [IProductItem[], (items: IProductItem[]) => void] = useState(defaultItems)
+	const defaultItems: IProduct[] = []
+	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
 
 	useEffect(() => {
-		axios.get<IProductItem[]>(`https://parserali.me/api/products/`)
+		axios.get<IProduct[]>(`https://parserali.me/api/products/`)
 			.then(response => {
-				setProducts(response.data)
+				setProducts(response.data.results)
 				setIsLoading(false)
+				console.log(response.data)
+				console.log(response.data.results)
+				console.log(products)
 			})
 			.catch(error => console.log(error.message))
 	}, [])
@@ -22,8 +25,8 @@ const Products: React.FC = () => {
 		<div className='products'>
 			{
 				isLoading
-				? <Loader/>
-				: products.map((obj: IProductItem) => <Item {...obj} key={obj.id} />)
+					? <Loader />
+					: products.map((obj: IProduct) => <Item {...obj} key={obj.id} />)
 			}
 		</div>
 	)

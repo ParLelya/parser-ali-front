@@ -15,18 +15,19 @@ interface IParamsObj {
 const ConcreteProduct: React.FC = () => {
 
 	const { id } = useParams()
-	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '' })
+	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })
 	const [param, setParam] = useState<IParamsObj[]>()
-	const [active, setActive] = useState('')
+	const [active, setActive] = useState([''])
 
 	useEffect(() => {
-		axios.get<IProductItem[]>(`https://parserali.me/api/products/${id}/`)
+		axios.get<IProductItem>(`https://parserali.me/api/products/${id}/`)
 			.then(response => {
-				const name = response.data[0]["name"]
-				const unique_id = response.data[0]["unique_id"]
-				const additional_parameters = response.data[0]["additional_parameters"]
-				const images = response.data[0]["images"]
-				const parameters = response.data[0]["parameters"]
+				console.log(response.data)
+				const name = response.data.name
+				const unique_id = response.data.unique_id
+				const additional_parameters = response.data.additional_parameters
+				const images = response.data.images
+				const parameters = response.data.parameters
 				const fixedImages = images.replace(/\'/g, '\"')
 				const fixedParameters = parameters!.replace(/\'/g, '\"')
 				const parsedImages = JSON.parse(fixedImages)
@@ -48,6 +49,13 @@ const ConcreteProduct: React.FC = () => {
 			.catch(error => console.log(error.message))
 	}, [id])
 
+	const handleClick = (index: number, id: number) => {
+		const selectedParam = []
+		selectedParam.push(String(index))
+		selectedParam.push(String(id))
+		setActive(selectedParam)
+	}
+
 	return (
 		<div className='product-item'>
 			{/* TODO: реализовать карусель из картинок, вытягивая ссылки по ключу */}
@@ -57,10 +65,10 @@ const ConcreteProduct: React.FC = () => {
 					<img src={item.images} alt='' />
 				</div>
 				<div className="card-content">
-					<span className="card-title brown-text text-darken-4">
+					<span className="card-title">
 						{item.name}
 					</span>
-					<div className="container brown-text text-darken-2">
+					<div className="container">
 						{
 							param?.map((item, index) => {
 								return (
@@ -70,12 +78,11 @@ const ConcreteProduct: React.FC = () => {
 											{item.info.map((detail, id) => (
 												<li
 													key={id}
-													onClick={() => {
-														setActive(String(index) + String(id))
-													}}
-													className={active === String(index) + String(id)
-														? 'parameter selected'
-														: 'parameter'
+													onClick={() => handleClick(index, id)}
+													className={
+														active[0] === String(index) && active[1] === String(id)
+															? 'parameter selected'
+															: 'parameter'
 													}
 												>
 													{detail.name}

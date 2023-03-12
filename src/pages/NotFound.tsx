@@ -2,7 +2,7 @@ import React from 'react'
 
 const NotFound: React.FC = () => {
 	return (
-		<div><h1 className='amber-text'>Ничего не найдено :( </h1></div>
+		<div><h1>Ничего не найдено :( </h1></div>
 	)
 }
 
