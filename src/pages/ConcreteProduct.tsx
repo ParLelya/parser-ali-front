@@ -17,7 +17,7 @@ const ConcreteProduct: React.FC = () => {
 	const { id } = useParams()
 	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })
 	const [param, setParam] = useState<IParamsObj[]>()
-	const [active, setActive] = useState([''])
+	const [active, setActive] = useState([[false]])
 
 	useEffect(() => {
 		axios.get<IProductItem>(`https://parserali.me/api/products/${id}/`)
@@ -44,16 +44,22 @@ const ConcreteProduct: React.FC = () => {
 					additional_parameters: additional_parameters
 				}
 				setItem(item)
+
+                const activeArray = [[false]];
+                for (let i = 0; i < parsedParameters.length - 1; i++) {
+                    activeArray.push([false])
+                }
+                setActive(activeArray)
 			})
 			.catch(error => console.log(error.message))
 	}, [id])
 
 	const handleClick = (index: number, id: number) => {
-		const selectedParam = []
-		selectedParam.push(String(index))
-		selectedParam.push(String(id))
-		setActive(selectedParam)
+		active[index][id] = true
+        console.log(active)
+		setActive(active);
 	}
+    console.log("it's = ", active)
 
 	return (
 		<div className='product-item'>
@@ -76,7 +82,7 @@ const ConcreteProduct: React.FC = () => {
 													key={id}
 													onClick={() => handleClick(index, id)}
 													className={
-														active[0] === String(index) && active[1] === String(id)
+														active[index][id]
 															? 'parameter selected'
 															: 'parameter'
 													}
