@@ -11,7 +11,8 @@ const Item: React.FC<IProduct> = (props) => {
 
 	const deleteProduct = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.stopPropagation()
-		axios.delete(`'https://parserali.me/api/products/${id}/'`)
+		axios.delete(`https://parserali.me/api/products/${id}/`)
+			.then()
 	}
 
 	return (
@@ -25,16 +26,16 @@ const Item: React.FC<IProduct> = (props) => {
 				</div>
 				<div className="card-stacked">
 					<div className="card-content">
-						<h6 style={{fontSize: '1rem'}}>{name}</h6>
+						<h6 style={{ fontSize: '1rem' }}>{name}</h6>
 					</div>
 					<div className="card-action">
-							<button 
+						<button
 							className="btn-flat btn-small waves-effect"
 							onClick={deleteProduct}
-							>
-								Удалить <i className="material-icons right">close</i>
-								</button>
-						</div>
+						>
+							Удалить <i className="material-icons right">close</i>
+						</button>
+					</div>
 				</div>
 			</div>
 		</Link>

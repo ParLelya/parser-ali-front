@@ -10,12 +10,12 @@ const Products: React.FC = () => {
 	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
 
 	useEffect(() => {
-		axios.get<IProduct[]>(`https://parserali.me/api/products/`)
+		axios.get(`https://parserali.me/api/products/`)
 			.then(response => {
 				setProducts(response.data.results)
 				setIsLoading(false)
-				console.log(response.data)
-				console.log(response.data.results)
+				// console.log(response.data)
+				// console.log(response.data.results)
 				console.log(products)
 			})
 			.catch(error => console.log(error.message))
