@@ -14,9 +14,6 @@ const Products: React.FC = () => {
 			.then(response => {
 				setProducts(response.data.results)
 				setIsLoading(false)
-				// console.log(response.data)
-				// console.log(response.data.results)
-				console.log(products)
 			})
 			.catch(error => console.log(error.message))
 	}, [])
