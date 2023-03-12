@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
 			<div className="nav-wrapper transparent">
 				<Link to="/" className="brand-logo" style={{left: '5px', top: '5px'}}>
 					<img
-						src="./images/logo.png"
+						src="logo.png"
 						alt="OLIMP logo"
 						style={{ width: '2em'}}
 					/>
