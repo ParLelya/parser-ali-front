@@ -9,7 +9,8 @@ const Item: React.FC<IProduct> = (props) => {
 	const { id, name, images } = props
 	const url = images.split(',')[0].replace(/\[|\]|\{|\}|\'/g, '').split(' ')[1]
 
-	const deleteProduct = () => {
+	const deleteProduct = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.stopPropagation()
 		axios.delete(`'https://parserali.me/api/products/${id}/'`)
 	}
 
@@ -26,7 +27,7 @@ const Item: React.FC<IProduct> = (props) => {
 					<div className="card-content">
 						<h6 style={{fontSize: '1rem'}}>{name}</h6>
 					</div>
-					<div className="card-action" onClick={e => e.stopPropagation()}>
+					<div className="card-action">
 							<button 
 							className="btn-flat btn-small waves-effect"
 							onClick={deleteProduct}

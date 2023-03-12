@@ -6,7 +6,7 @@ import Loader from '../components/Loader';
 
 const Products: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true)
-	const defaultItems: IProduct[] = []
+	const defaultItems: IProduct[] = [{id: 0, name: '', images: ''}]
 	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
 
 	useEffect(() => {

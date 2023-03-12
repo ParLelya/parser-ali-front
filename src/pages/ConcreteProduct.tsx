@@ -22,7 +22,6 @@ const ConcreteProduct: React.FC = () => {
 	useEffect(() => {
 		axios.get<IProductItem>(`https://parserali.me/api/products/${id}/`)
 			.then(response => {
-				console.log(response.data)
 				const name = response.data.name
 				const unique_id = response.data.unique_id
 				const additional_parameters = response.data.additional_parameters
@@ -61,15 +60,12 @@ const ConcreteProduct: React.FC = () => {
 			{/* TODO: реализовать карусель из картинок, вытягивая ссылки по ключу */}
 			{/* <Carousel images={item.images}/> */}
 			<div className="card">
-				<div className="card-image">
-					<img src={item.images} alt='' />
+				<div className="card-image waves-effect waves-block waves-light">
+				<img src={item.images} alt='' />
 				</div>
 				<div className="card-content">
-					<span className="card-title">
-						{item.name}
-					</span>
-					<div className="container">
-						{
+					<span className="card-title activator">{item.name}<i className="material-icons right">more_vert</i></span>
+					<div>{
 							param?.map((item, index) => {
 								return (
 									<div key={index}>
@@ -92,22 +88,16 @@ const ConcreteProduct: React.FC = () => {
 									</div>
 								)
 							})
-						}
-					</div>
+						}</div>
+				</div>
+				<div className="card-reveal">
+					<span className="card-title grey-text text-darken-4">{item.name}<i className="material-icons right">close</i></span>
 					<iframe
-						className="brown-text text-darken-3"
 						title={item.unique_id}
 						srcDoc={item.additional_parameters}
 					/>
 				</div>
 			</div>
-			{/* <div className="card-reveal">
-				<span className="card-title brown-text text-darken-4">
-					{item.name}
-					<i className="material-icons right">close</i>
-				</span>
-				
-			</div> */}
 		</div >
 	)
 }
