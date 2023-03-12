@@ -11,10 +11,10 @@ body {
 .App {
   	text-align: center;
 	width: 90vw;
-	min-height: 98vh;
+	min-height: 95vh;
 	background-color: white;
 	border-radius: 30px;
-	margin-top: 5px;
+	margin: 1rem 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
