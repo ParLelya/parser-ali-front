@@ -45,11 +45,11 @@ const ConcreteProduct: React.FC = () => {
 				}
 				setItem(item)
 
-                const activeArray = [[false]];
-                for (let i = 0; i < parsedParameters.length - 1; i++) {
-                    activeArray.push([false])
-                }
-                setActive(activeArray)
+				const activeArray = [[false]];
+				for (let i = 0; i < parsedParameters.length - 1; i++) {
+					activeArray.push([false])
+				}
+				setActive(activeArray)
 			})
 			.catch(error => console.log(error.message))
 	}, [id])
@@ -60,30 +60,34 @@ const ConcreteProduct: React.FC = () => {
 			{/* <Carousel images={item.images}/> */}
 			<div className="card">
 				<div className="card-image waves-effect waves-block waves-light">
-				<img src={item.images} alt='' />
+					<img src={item.images} alt='' />
 				</div>
 				<div className="card-content">
 					<span className="card-title activator">{item.name}<i className="material-icons right">more_vert</i></span>
 					<div>{
-							param?.map((item, index) => {
-								return (
-									<div key={index}>
-										<span>{item.title}</span>
-											{item.info.map((detail, id) => (
-												<p key={id} className="product-info">
-												<label className='parameter'>
-													<input
-													type="radio"
-													name={item.title}
-												/>	
-												<span>{detail.name}</span>
-												</label>
+						param?.map((item, index) => {
+							return (
+								<div className='product-info' key={index}>
+									<h6 style={{margin: '1rem 0'}}>{item.title}</h6>
+									<div className='parameter'>
+										{
+											item.info.map((detail, id) => (
+												<p key={id} className='parameter-button'>
+													<label className='parameter-label'>
+														<input
+															type="radio"
+															name={item.title}
+														/>
+														<span>{detail.name}</span>
+													</label>
 												</p>
-											))}
+											))
+										}
 									</div>
-								)
-							})
-						}</div>
+								</div>
+							)
+						})
+					}</div>
 				</div>
 				<div className="card-reveal">
 					<span className="card-title grey-text text-darken-4">{item.name}<i className="material-icons right">close</i></span>
