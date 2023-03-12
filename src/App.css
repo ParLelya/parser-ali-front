@@ -159,7 +159,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 }
 
 .parameter-button {
-	margin: 1rem;
+	margin: 0.5rem !important;
 }
 
 .parameter-label {
