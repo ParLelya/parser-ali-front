@@ -54,13 +54,6 @@ const ConcreteProduct: React.FC = () => {
 			.catch(error => console.log(error.message))
 	}, [id])
 
-	const handleClick = (index: number, id: number) => {
-		active[index][id] = true
-        console.log(active)
-		setActive(active);
-	}
-    console.log("it's = ", active)
-
 	return (
 		<div className='product-item'>
 			{/* TODO: реализовать карусель из картинок, вытягивая ссылки по ключу */}
@@ -76,21 +69,17 @@ const ConcreteProduct: React.FC = () => {
 								return (
 									<div key={index}>
 										<span>{item.title}</span>
-										<ul className="product-info">
 											{item.info.map((detail, id) => (
-												<li
-													key={id}
-													onClick={() => handleClick(index, id)}
-													className={
-														active[index][id]
-															? 'parameter selected'
-															: 'parameter'
-													}
-												>
-													{detail.name}
-												</li>
+												<p key={id} className="product-info">
+												<label className='parameter'>
+													<input
+													type="radio"
+													name={item.title}
+												/>	
+												<span>{detail.name}</span>
+												</label>
+												</p>
 											))}
-										</ul>
 									</div>
 								)
 							})
