@@ -11,11 +11,12 @@ const Products: React.FC = () => {
 	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
 
 	const { ref, inView } = useInView({
-		threshold: 1,
-		triggerOnce: true
+		threshold: 0,
+		triggerOnce: true,
+		// delay: 1500
 	})
 
-	const [limit, setLimit] = useState(3);
+	const [limit, setLimit] = useState(5);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 
@@ -30,14 +31,23 @@ const Products: React.FC = () => {
 				setIsLoading(false)
 				const totalCount: number = response.data.count
 				setTotalPages(getPagesCount(totalCount, limit))
-				if (inView) {
-					setPage(prev => prev + 1)
-				}
-				if (page === totalPages) return
 			})
 			.catch(error => console.error(error.message))
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [inView])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+	if (inView) {
+		console.log(page)
+		
+		setPage(page + 1)
+
+		console.log(page)
+
+		// axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
+		// 	.then(response => {
+		// 		setProducts([...products, ...response.data.results])
+		// 	})
+	}
 
 	return (
 		<div className='products'>
@@ -46,7 +56,12 @@ const Products: React.FC = () => {
 					? <Loader />
 					: products.map((obj: IProduct) => <Item {...obj} key={obj.id} />)
 			}
-			<div ref={ref} style={{ height: '5rem', backgroundColor: 'red' }}></div>
+			{
+				isLoading
+					? <Loader />
+					: <div ref={ref} style={{ width: '100%', height: '5rem', backgroundColor: 'red' }}></div>
+			}
+
 		</div>
 	)
 }
