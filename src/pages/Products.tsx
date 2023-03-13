@@ -9,7 +9,6 @@ const Products: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true)
 	const defaultItems: IProduct[] = [{ id: 0, name: '', images: '' }]
 	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
-
 	const [limit, setLimit] = useState(4);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
@@ -34,14 +33,13 @@ const Products: React.FC = () => {
 		threshold: 1,
 		onChange(inView) {
 			if (inView) {
-				if (page >= totalPages) {
-					setPage(totalPages)
-				}
 				setPage(page + 1)
-				axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
-					.then(response => {
-						setProducts([...products, ...response.data.results])
-					})
+				if (page >= 2 && page <= totalPages) {
+					axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
+						.then(response => {
+							setProducts([...products, ...response.data.results])
+						})
+				}
 			}
 		}
 	})
@@ -53,12 +51,7 @@ const Products: React.FC = () => {
 					? <Loader />
 					: products.map((obj: IProduct) => <Item {...obj} key={obj.id} />)
 			}
-			{
-				isLoading
-					? <Loader />
-					: <div ref={ref} style={{ width: '100%', height: '5rem', backgroundColor: 'red' }}></div>
-			}
-
+			<div ref={ref} style={{ width: '100%', height: '1rem'}}></div>
 		</div>
 	)
 }
