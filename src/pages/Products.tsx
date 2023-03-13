@@ -10,13 +10,7 @@ const Products: React.FC = () => {
 	const defaultItems: IProduct[] = [{ id: 0, name: '', images: '' }]
 	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
 
-	const { ref, inView } = useInView({
-		threshold: 0,
-		triggerOnce: true,
-		// delay: 1500
-	})
-
-	const [limit, setLimit] = useState(5);
+	const [limit, setLimit] = useState(4);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 
@@ -36,18 +30,21 @@ const Products: React.FC = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	if (inView) {
-		console.log(page)
-		
-		setPage(page + 1)
-
-		console.log(page)
-
-		// axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
-		// 	.then(response => {
-		// 		setProducts([...products, ...response.data.results])
-		// 	})
-	}
+	const { ref } = useInView({
+		threshold: 1,
+		onChange(inView) {
+			if (inView) {
+				if (page >= totalPages) {
+					setPage(totalPages)
+				}
+				setPage(page + 1)
+				axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
+					.then(response => {
+						setProducts([...products, ...response.data.results])
+					})
+			}
+		}
+	})
 
 	return (
 		<div className='products'>
