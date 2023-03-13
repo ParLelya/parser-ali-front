@@ -141,6 +141,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 
 .card-action button:hover {
 	color: #bf360c !important;
+	font-weight: bold;
 	background-color: transparent;
 	cursor: pointer;
 }
