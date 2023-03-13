@@ -131,7 +131,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 	object-fit: contain;
 }
 
-.card.horizontal {
+.card {
 	width: 100%;
 }
 
