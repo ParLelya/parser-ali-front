@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-
+import { API_URL } from '../http';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,7 +21,7 @@ const Parser: React.FC = () => {
 	}
 
 	const parse = () => {
-		axios.post<IResponse>('https://parserali.me/api/scrape/', { "url": value })
+		axios.post<IResponse>(`${API_URL}/scrape/`, { "url": value })
 			.then((response) => {
 				if (response.data.task_id) {
 					toast.success('Успешно отправлено на парсинг')
@@ -31,7 +31,7 @@ const Parser: React.FC = () => {
 				}
 			})
 			.catch((error) => {
-				toast.error(`При парсинге произошла ошибка: ${error.message}`)
+				toast.error(`При отправке произошла ошибка: ${error.message}`)
 			})
 	}
 

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import AuthForm from '../components/AuthForm'
 
 const Cabinet: React.FC = () => {
+
 	return (
-		<div></div>
+		<div className='cabinet'>
+			<AuthForm />
+		</div>
 	)
 }
 

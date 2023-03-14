@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router';
 import { IProductItem } from '../types/interface';
+import { API_URL } from '../http';
 // import Carousel from '../components/Carousel';
 
 interface IParamsObj {
@@ -20,7 +21,7 @@ const ConcreteProduct: React.FC = () => {
 	const [active, setActive] = useState([[false]])
 
 	useEffect(() => {
-		axios.get<IProductItem>(`https://parserali.me/api/products/${id}/`)
+		axios.get<IProductItem>(`${API_URL}/products/${id}/`)
 			.then(response => {
 				const name = response.data.name
 				const unique_id = response.data.unique_id

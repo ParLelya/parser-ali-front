@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../http';
 import { useInView } from 'react-intersection-observer';
 import { IProduct } from '../types/interface'
 import Item from '../components/Item'
@@ -18,7 +19,7 @@ const Products: React.FC = () => {
 	}
 
 	useEffect(() => {
-		axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
+		axios.get(`${API_URL}/products/?limits=${limit}&page=${page}`)
 			.then(response => {
 				setProducts(response.data.results)
 				setIsLoading(false)
@@ -35,7 +36,7 @@ const Products: React.FC = () => {
 			if (inView) {
 				setPage(page + 1)
 				if (page >= 2 && page <= totalPages) {
-					axios.get(`https://parserali.me/api/products/?limits=${limit}&page=${page}`)
+					axios.get(`${API_URL}/products/?limits=${limit}&page=${page}`)
 						.then(response => {
 							setProducts([...products, ...response.data.results])
 						})

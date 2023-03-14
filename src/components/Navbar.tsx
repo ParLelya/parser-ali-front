@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
 					<img
 						src="logo.png"
 						alt="OLIMP logo"
-						style={{ width: '2em'}}
+						style={{height: '3em'}}
 					/>
 				</Link>
 				<ul id="nav-mobile" className="right">
