@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const AuthForm: React.FC = () => {
 
@@ -7,7 +8,9 @@ const AuthForm: React.FC = () => {
 
 	return (
 		<div className="auth-form">
-			<form className="col s12">
+			<h1>Добро пожаловать!</h1>
+			<p style={{ color: 'black' }}>Пожалуйста, войдите в свой профиль.</p>
+			<form className="">
 				<div className="row">
 					<div className="input-field col s12">
 						<input
@@ -30,7 +33,12 @@ const AuthForm: React.FC = () => {
 						<label htmlFor="password">Введите пароль</label>
 					</div>
 				</div>
+				<Link to='' className='btn' style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}>Войти</Link>
 			</form>
+			<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+				<p style={{ color: 'black', padding: '1rem' }}>Впервые в ОЛИМП?</p>
+				<Link to='' style={{ padding: '1rem', margin: '1rem 0' }}>Зарегистрироваться</Link>
+			</div>
 		</div>
 	)
 }

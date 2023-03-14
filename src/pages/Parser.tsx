@@ -38,7 +38,7 @@ const Parser: React.FC = () => {
 	return (
 		<form onSubmit={stopReload}>
 			<div className="row" >
-				<div className="input-field col s12 m8" style={{ width: '100%' }}>
+				<div className="input-field" style={{ width: '95%' }}>
 					<input
 						id="url"
 						type="text"

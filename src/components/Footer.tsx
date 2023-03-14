@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
 			<div className="container">
 				<div className="row">
 					<div className="col m6 s12">
-						{/* <h5>Footer Content</h5> */}
-						<p>From OLIMP with love</p>
+						<h5>From OLIMP</h5>
+						<p>with love</p>
 					</div>
 					<div className="col m6 s12">
 						<h5>Links</h5>
