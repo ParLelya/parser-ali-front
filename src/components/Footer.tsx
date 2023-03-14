@@ -2,7 +2,6 @@ import React from 'react'
 
 const Footer: React.FC = () => {
 	return (
-
 		<footer className="page-footer transparent">
 			<div className="container">
 				<div className="row">
@@ -21,11 +20,10 @@ const Footer: React.FC = () => {
 			</div>
 			<div className="footer-copyright" style={{ borderRadius: '0 0 30px 30px', alignItems: 'center', color: '#351BA9' }}>
 				<div className="container">
-					<p style={{color: '#C81818'}}>© 2023 Copyright Text</p>
+					<p style={{color: '#000'}}>© 2023 Copyright Text</p>
 				</div>
 			</div>
 		</footer>
-
 	)
 }
 

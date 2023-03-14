@@ -21,7 +21,7 @@ body {
 	flex-wrap: wrap;
 	color: #351BA9 !important;
 	background-image: url('../public/olimp.png');
-	background-size: 30%;
+	background-size: 35rem;
 	background-position: bottom 0 right 0;
 	background-repeat: no-repeat;
 }
@@ -41,11 +41,6 @@ header {
 .nav-to-cab {
 	color: #351BA9 !important;
 	border-radius: 0 30px 0 0;
-}
-@media only screen and (max-width: 992px) {
-	nav .brand-logo {
-		transform: translateX(0%);
-	}
 }
 
 main {
@@ -227,4 +222,18 @@ footer {
 	color: #351BA9 !important;
 	width: 100%;
 	align-self: flex-end;
+}
+
+footer.container {
+	margin-left: 0;
+}
+
+footer.container.row {
+	width: 60%;
+}
+
+@media only screen and (max-width: 992px) {
+	nav .brand-logo {
+		transform: translateX(0%);
+	}
 }
