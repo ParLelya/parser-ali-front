@@ -9,6 +9,7 @@ import Parser from './pages/Parser';
 import Products from './pages/Products';
 import Cabinet from './pages/Cabinet';
 import ConcreteProduct from './pages/ConcreteProduct';
+import Registration from './pages/Registration';
 
 const App: React.FC = () => {
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
 					<Route path="/products/*" element={<Products />} />
 					<Route path="/products/:id" element={<ConcreteProduct />} />
 					<Route path="/cabinet" element={<Cabinet />} />
+					<Route path="/registration" element={<Registration />} />
 					<Route path="/*" element={<NotFound />} />
 				</Routes>
 			</main>

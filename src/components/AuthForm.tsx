@@ -33,11 +33,11 @@ const AuthForm: React.FC = () => {
 						<label htmlFor="password">Введите пароль</label>
 					</div>
 				</div>
-				<Link to='' className='btn' style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}>Войти</Link>
+				<button className='btn' style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}>Войти</button>
 			</form>
 			<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
 				<p style={{ color: 'black', padding: '1rem' }}>Впервые в ОЛИМП?</p>
-				<Link to='' style={{ padding: '1rem', margin: '1rem 0' }}>Зарегистрироваться</Link>
+				<Link to='/registration' style={{ padding: '1rem', margin: '1rem 0' }}>Зарегистрироваться</Link>
 			</div>
 		</div>
 	)
