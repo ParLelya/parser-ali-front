@@ -36,9 +36,9 @@ const Registration: React.FC = () => {
 						<label htmlFor="password">Введите пароль</label>
 					</div>
 				</div>
-				<div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+				<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
 					<button className='btn' style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}>Зарегистрироваться</button>
-					<button className='btn' style={{ backgroundColor: "#fff", color: '#351BA9', width: '15rem', borderRadius: '6px', border: '2px solid #351BA9' }}>Войти</button>
+					<Link to='/cabinet' className='btn' style={{ backgroundColor: "#fff", color: '#351BA9', width: '15rem', borderRadius: '6px', border: '2px solid #351BA9' }}>Войти</Link>
 				</div>
 			</form>
 		</div>
