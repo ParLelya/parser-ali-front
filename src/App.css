@@ -21,7 +21,7 @@ body {
 	flex-wrap: wrap;
 	color: #351BA9 !important;
 	background-image: url('../public/olimp.png');
-	background-size: 35rem;
+	background-size: 30rem;
 	background-position: bottom 0 right 0;
 	background-repeat: no-repeat;
 }
@@ -53,11 +53,11 @@ main {
 
 main.valign-wrapper {
 	width: 100%;
-	min-height: 60vh;
+	min-height: 50vh;
 }
 
 .menu {
-	width: 60vw;
+	width: 60%;
 	border: none;
 	font-size: 2rem;
 	color: #351BA9 !important;
