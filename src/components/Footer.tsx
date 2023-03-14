@@ -3,7 +3,7 @@ import React from 'react'
 const Footer: React.FC = () => {
 	return (
 		<footer className="page-footer transparent">
-			<div className="container">
+			<div className="container" style={{margin: '0'}}>
 				<div className="row">
 					<div className="col m6 s12">
 						<h5>From OLIMP</h5>
