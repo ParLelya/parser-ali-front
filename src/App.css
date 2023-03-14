@@ -21,7 +21,7 @@ body {
 	flex-wrap: wrap;
 	color: #351BA9 !important;
 	background-image: url('../public/olimp.png');
-	background-size: 50%;
+	background-size: 30%;
 	background-position: bottom 0 right 0;
 	background-repeat: no-repeat;
 }
