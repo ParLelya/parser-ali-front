@@ -6,7 +6,11 @@ const Registration: React.FC = () => {
 	const [username, setUsername] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault()
+		registrationAsync({ email, password, username })
+	}
+	
 	return (
 		<div className="auth-form">
 			<h1>Регистрация</h1>
@@ -52,7 +56,7 @@ const Registration: React.FC = () => {
 					<button
 						className='btn'
 						style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}
-						onClick={() => registrationAsync({ email, password, username })}
+						onClick={handleClick}
 					>Зарегистрироваться</button>
 					<Link to='/cabinet' className='btn' style={{ backgroundColor: "#fff", color: '#351BA9', width: '15rem', borderRadius: '6px', border: '2px solid #351BA9' }}>Войти</Link>
 				</div>

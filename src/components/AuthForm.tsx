@@ -6,7 +6,11 @@ const AuthForm: React.FC = () => {
 
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault()
+		loginAsync({ email, password })
+	}
+	
 	return (
 		<div className="auth-form">
 			<h1>Добро пожаловать!</h1>
@@ -39,7 +43,7 @@ const AuthForm: React.FC = () => {
 				<button
 					className='btn'
 					style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}
-					onClick={() => loginAsync({ email, password })}
+					onClick={handleClick}
 				>Войти</button>
 			</form>
 			<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
