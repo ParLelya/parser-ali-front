@@ -13,7 +13,7 @@ const Item: React.FC<IProduct> = (props) => {
 
 	const deleteProduct = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
-		axios.delete(`${API_URL}/products/${id}/`)
+		axios.delete(`${API_URL}/api/products/${id}/`)
 		.then(() => (divRef.current?.remove()))
 	}
 

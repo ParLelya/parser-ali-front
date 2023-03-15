@@ -19,7 +19,7 @@ const Products: React.FC = () => {
 	}
 
 	useEffect(() => {
-		axios.get(`${API_URL}/products/?limits=${limit}&page=${page}`)
+		axios.get(`${API_URL}/api/products/?limits=${limit}&page=${page}`)
 			.then(response => {
 				setProducts(response.data.results)
 				setIsLoading(false)

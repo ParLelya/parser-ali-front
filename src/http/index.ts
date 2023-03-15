@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = `https://parserali.me/api`
+export const API_URL = `https://parserali.me`
 
 const $api = axios.create({
 	withCredentials: true,

@@ -20,7 +20,7 @@ const ConcreteProduct: React.FC = () => {
 	const [param, setParam] = useState<IParamsObj[]>()
 
 	useEffect(() => {
-		axios.get<IProductItem>(`${API_URL}/products/${id}/`)
+		axios.get<IProductItem>(`${API_URL}/api/products/${id}/`)
 			.then(response => {
 				const name = response.data.name
 				const unique_id = response.data.unique_id
