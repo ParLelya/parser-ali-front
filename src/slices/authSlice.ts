@@ -4,7 +4,7 @@ import UserService from './../services/UserService';
 import { ISignUp, IUser } from '../types/auth/User';
 import { IAuth } from '../types/auth/User';
 import axios from 'axios';
-import { AuthResponse } from './../types/auth/AuthResponse';
+// import { AuthResponse } from './../types/auth/AuthResponse';
 import { API_URL } from './../http/index';
 
 export interface UserState {
@@ -30,14 +30,13 @@ const initialState: UserState = {
 };
 
 export const loginAsync = createAsyncThunk(
-  'auth/login',
+  'auth/loginAsync',
   async function (value: IAuth) {
 		try {
 			const response = await AuthService.login(value)
 			console.log(response)
-			localStorage.setItem('token', response.data.token.access)
-			setIsAuth(true)
-			setUser(response.data.user)
+			localStorage.setItem('token', response.data.access)
+			// setIsAuth(true)
 		} catch (error: any) {
 			return isRejectedWithValue(error.message)
 		}
@@ -45,7 +44,7 @@ export const loginAsync = createAsyncThunk(
 )
 
 export const registrationAsync = createAsyncThunk(
-	'auth/registration',
+	'auth/registrationAsync',
 	async function (value: ISignUp) {
 		try {
 			const response = await AuthService.registration(value)
@@ -72,14 +71,13 @@ export const openProfile = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
 	'auth/checkAuth',
-	async () => {
+	async (refresh: string) => {
 		try {
 			setIsLoading(false)
-			const response = await axios.get<AuthResponse>(`${API_URL}/auth/token/refresh/`, {withCredentials: true})
+			const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
 			console.log(response)
-			localStorage.setItem('token', response.data.token.access)
-			setIsAuth(true)
-			setUser(response.data.user)
+			localStorage.setItem('token', response.data)
+			// setIsAuth(true)
 		} catch (error: any) {
 			return isRejectedWithValue(error.message)
 		}
