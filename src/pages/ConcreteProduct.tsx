@@ -18,7 +18,6 @@ const ConcreteProduct: React.FC = () => {
 	const { id } = useParams()
 	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })
 	const [param, setParam] = useState<IParamsObj[]>()
-	const [active, setActive] = useState([[false]])
 
 	useEffect(() => {
 		axios.get<IProductItem>(`${API_URL}/products/${id}/`)
@@ -45,12 +44,6 @@ const ConcreteProduct: React.FC = () => {
 					additional_parameters: additional_parameters
 				}
 				setItem(item)
-
-				const activeArray = [[false]];
-				for (let i = 0; i < parsedParameters.length - 1; i++) {
-					activeArray.push([false])
-				}
-				setActive(activeArray)
 			})
 			.catch(error => console.log(error.message))
 	}, [id])

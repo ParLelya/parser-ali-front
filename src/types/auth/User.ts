@@ -11,6 +11,11 @@ export interface IUser {
 	id: number
 	username: string
 	email: string
-	is_active: boolean
-	staff: boolean
+	is_active?: boolean
+	staff?: boolean
+}
+
+export interface IToken {
+	access: string
+	refresh: string
 }

@@ -34,7 +34,7 @@ const Products: React.FC = () => {
 		threshold: 1,
 		onChange(inView) {
 			if (inView) {
-				setPage(page + 1)
+				setPage(prev => prev + 1)
 				if (page >= 2 && page <= totalPages) {
 					axios.get(`${API_URL}/products/?limits=${limit}&page=${page}`)
 						.then(response => {
@@ -52,7 +52,7 @@ const Products: React.FC = () => {
 					? <Loader />
 					: products.map((obj: IProduct) => <Item {...obj} key={obj.id} />)
 			}
-			<div ref={ref} style={{ width: '100%', height: '1rem'}}></div>
+			<div ref={ref} style={{ width: '100%', height: '1rem' }}></div>
 		</div>
 	)
 }

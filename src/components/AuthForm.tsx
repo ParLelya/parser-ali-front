@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { loginAsync } from '../slices/authSlice'
 
 const AuthForm: React.FC = () => {
 
@@ -16,6 +17,7 @@ const AuthForm: React.FC = () => {
 						<input
 							id="email"
 							type="email"
+							value={email}
 							className="validate"
 							onChange={e => setEmail(e.target.value)}
 						/>
@@ -27,17 +29,25 @@ const AuthForm: React.FC = () => {
 						<input
 							id="password"
 							type="password"
+							value={password}
 							className="validate"
 							onChange={e => setPassword(e.target.value)}
 						/>
 						<label htmlFor="password">Введите пароль</label>
 					</div>
 				</div>
-				<button className='btn' style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}>Войти</button>
+				<button
+					className='btn'
+					style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}
+					onClick={() => loginAsync({ email, password })}
+				>Войти</button>
 			</form>
 			<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
 				<p style={{ color: 'black', padding: '1rem' }}>Впервые в ОЛИМП?</p>
-				<Link to='/registration' style={{ padding: '1rem', margin: '1rem 0' }}>Зарегистрироваться</Link>
+				<Link
+					to='/registration'
+					style={{ padding: '1rem', margin: '1rem 0' }}
+				>Зарегистрироваться</Link>
 			</div>
 		</div>
 	)
