@@ -10,7 +10,7 @@ const AuthForm: React.FC = () => {
 		event.preventDefault()
 		loginAsync({ email, password })
 	}
-	
+
 	return (
 		<div className="auth-form">
 			<h1>Добро пожаловать!</h1>
@@ -41,6 +41,7 @@ const AuthForm: React.FC = () => {
 					</div>
 				</div>
 				<button
+					type='submit'
 					className='btn'
 					style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}
 					onClick={handleClick}

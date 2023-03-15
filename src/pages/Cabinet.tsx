@@ -6,17 +6,17 @@ import { RootState } from '../store/store';
 
 const Cabinet: React.FC = () => {
 
-	const isAuth = useAppSelector((state: RootState) => state.isAuth)
-	const username = useAppSelector((state: RootState) => state.user.username)
-	const email = useAppSelector((state: RootState) => state.user.email)
-	const id = useAppSelector((state: RootState) => state.user.id)
+	const isAuth = useAppSelector((state: RootState) => state.auth.isAuth)
+	const username = useAppSelector((state: RootState) => state.auth.user.username)
+	const email = useAppSelector((state: RootState) => state.auth.user.email)
+	const id = useAppSelector((state: RootState) => state.auth.user.id)
 
-	// useEffect(() => {
-	// 	if (localStorage.getItem('token')) {
-	// 		checkAuth()
-	// 		openProfile()
-	// 	}
-	// }, [])
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			// checkAuth()
+			openProfile()
+		}
+	}, [])
 
 	return (
 		<div className='cabinet'>

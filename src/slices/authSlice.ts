@@ -36,7 +36,7 @@ export const loginAsync = createAsyncThunk(
 			const response = await AuthService.login(value)
 			console.log(response)
 			localStorage.setItem('token', response.data.access)
-			// setIsAuth(true)
+			setIsAuth(true)
 		} catch (error: any) {
 			return isRejectedWithValue(error.message)
 		}
@@ -77,7 +77,7 @@ export const checkAuth = createAsyncThunk(
 			const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
 			console.log(response)
 			localStorage.setItem('token', response.data)
-			// setIsAuth(true)
+			setIsAuth(true)
 		} catch (error: any) {
 			return isRejectedWithValue(error.message)
 		}

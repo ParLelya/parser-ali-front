@@ -55,6 +55,7 @@ const Registration: React.FC = () => {
 				<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
 					<button
 						className='btn'
+						type='submit'
 						style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}
 						onClick={handleClick}
 					>Зарегистрироваться</button>
