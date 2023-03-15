@@ -36,7 +36,7 @@ const Products: React.FC = () => {
 			if (inView) {
 				setPage(prev => prev + 1)
 				if (page >= 2 && page <= totalPages) {
-					axios.get(`${API_URL}/products/?limits=${limit}&page=${page}`)
+					axios.get(`${API_URL}/api/products/?limits=${limit}&page=${page}`)
 						.then(response => {
 							setProducts([...products, ...response.data.results])
 						})
