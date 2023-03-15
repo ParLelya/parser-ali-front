@@ -1,13 +1,16 @@
 import { createAsyncThunk, createSlice, isRejectedWithValue, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store/store';
 import AuthService from '../services/AuthService';
+import UserService from './../services/UserService';
 import { ISignUp, IUser } from '../types/auth/User';
 import { IAuth } from '../types/auth/User';
-import UserService from './../services/UserService';
+import axios from 'axios';
+import { AuthResponse } from './../types/auth/AuthResponse';
+import { API_URL } from './../http/index';
 
 export interface UserState {
   user: IUser;
   isAuth: boolean;
+  isLoading: boolean;
 //   status: 'loading' | 'finished' | 'error' | null
 }
 
@@ -22,6 +25,7 @@ const initialState: UserState = {
 	  }
   ,
   isAuth: false,
+  isLoading: true,
 //   status: null
 };
 
@@ -31,7 +35,7 @@ export const loginAsync = createAsyncThunk(
 		try {
 			const response = await AuthService.login(value)
 			console.log(response)
-			// localStorage.setItem('token', response.data.token.access)
+			localStorage.setItem('token', response.data.token.access)
 			setIsAuth(true)
 			setUser(response.data.user)
 		} catch (error: any) {
@@ -46,7 +50,6 @@ export const registrationAsync = createAsyncThunk(
 		try {
 			const response = await AuthService.registration(value)
 			console.log(response)
-			// localStorage.setItem('token', response.data.token.access)
 			setUser({
 				id: Date.now(),
 				username: response.data.username,
@@ -58,10 +61,28 @@ export const registrationAsync = createAsyncThunk(
 	}
 )
 
-export const openProfileAsync = createAsyncThunk(
+export const openProfile = createAsyncThunk(
 	'auth/openProfile',
 	async () => {
 		const response = await UserService.getUser()
+		console.log(response);
+		setUser(response.data)
+	}
+)
+
+export const checkAuth = createAsyncThunk(
+	'auth/checkAuth',
+	async () => {
+		try {
+			setIsLoading(false)
+			const response = await axios.get<AuthResponse>(`${API_URL}/auth/token/refresh/`, {withCredentials: true})
+			console.log(response)
+			localStorage.setItem('token', response.data.token.access)
+			setIsAuth(true)
+			setUser(response.data.user)
+		} catch (error: any) {
+			return isRejectedWithValue(error.message)
+		}
 	}
 )
 
@@ -74,10 +95,13 @@ export const authSlice = createSlice({
     },
 	setIsAuth: (state, action: PayloadAction<boolean>) => {
 		state.isAuth = action.payload;
-	  },
+	},
+	setIsLoading: (state, action: PayloadAction<boolean>) => {
+		state.isLoading = action.payload;
+	},
   }
 });	
 
-export const { setUser, setIsAuth } = authSlice.actions;
+export const { setUser, setIsAuth, setIsLoading } = authSlice.actions;
 
 export default authSlice.reducer;

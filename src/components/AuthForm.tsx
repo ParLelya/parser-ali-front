@@ -11,7 +11,7 @@ const AuthForm: React.FC = () => {
 		<div className="auth-form">
 			<h1>Добро пожаловать!</h1>
 			<p style={{ color: 'black' }}>Пожалуйста, войдите в свой профиль.</p>
-			<form className="">
+			<form>
 				<div className="row">
 					<div className="input-field col s12">
 						<input

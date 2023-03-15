@@ -218,6 +218,40 @@ iframe {
 	width: 100%;
 }
 
+.profile {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+	width: 100%;
+}
+
+.profile-info-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 30rem;
+}
+
+.profile-label {
+	font-size: 1rem;
+	color: black;
+	margin: 1.5rem 0;
+}
+
+.profile-info {
+	background-color: white; 
+	color: #351BA9; 
+	width: 15rem;
+	border-radius: 6px; 
+	border: 2px solid #351BA9;
+}
+.profile-info:hover {
+	background-color: white;
+}
+
 footer {
 	color: #000 !important;
 	width: 100%;
