@@ -1,27 +1,28 @@
 import React, { useEffect } from 'react'
 import AuthForm from '../components/AuthForm'
-import { checkAuth, openProfile } from './../slices/authSlice';
-import { useAppSelector } from '../store/hooks';
+import Loader from '../components/Loader'; 
+import { checkAuth, fetchUserInfo } from './../slices/authSlice';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { RootState } from '../store/store';
 
 const Cabinet: React.FC = () => {
-
-	const isAuth = useAppSelector((state: RootState) => state.auth.isAuth)
-	const username = useAppSelector((state: RootState) => state.auth.user.username)
-	const email = useAppSelector((state: RootState) => state.auth.user.email)
-	const id = useAppSelector((state: RootState) => state.auth.user.id)
+	const dispatch = useAppDispatch()
+	const {isLoading, isAuth, username, email, id} = useAppSelector((state: RootState) => state.auth)
 
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
-			// checkAuth()
-			openProfile()
+			dispatch(checkAuth())
+			dispatch(fetchUserInfo())
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
 		<div className='cabinet'>
 			{
-				isAuth
+				isLoading 
+				? <Loader/>
+				: isAuth
 					? (
 						<div className='profile'>
 							<h3>Ваш профиль</h3>
@@ -38,7 +39,7 @@ const Cabinet: React.FC = () => {
 								<span className='btn profile-info'>{email}</span>
 							</div>
 						</div>
-					  )
+					)
 					: <AuthForm />
 			}
 		</div>

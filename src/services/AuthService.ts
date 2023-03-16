@@ -1,6 +1,5 @@
 import $api from "../http";
 import { AxiosResponse } from "axios";
-// import { AuthResponse } from "../types/auth/AuthResponse";
 import { ISignUp, IAuth, IToken } from "../types/auth/User";
 
 export default class AuthService {

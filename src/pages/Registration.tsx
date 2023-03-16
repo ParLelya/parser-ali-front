@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { registrationAsync } from './../slices/authSlice';
+import { registration } from './../slices/authSlice';
+import { useAppDispatch } from '../store/hooks';
 
 const Registration: React.FC = () => {
+	const dispatch = useAppDispatch()
 	const [username, setUsername] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
-		registrationAsync({ email, password, username })
+		dispatch(registration({ email, password, username }))
 	}
 	
 	return (

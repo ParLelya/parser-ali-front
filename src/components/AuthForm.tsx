@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { loginAsync } from '../slices/authSlice'
+import { login } from '../slices/authSlice'
+import { useAppDispatch } from '../store/hooks';
 
 const AuthForm: React.FC = () => {
-
+	const dispatch = useAppDispatch()
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {	
 		event.preventDefault()
-		loginAsync({ email, password })
+		dispatch(login({ email, password }))
 	}
 
 	return (
