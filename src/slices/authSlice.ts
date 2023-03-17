@@ -126,7 +126,7 @@ export const authSlice = createSlice({
 			state.status = 'finished';
 			state.isLoading = false;
 			state.isAuth = true;
-			state.user = action.payload;		
+			state.user = action.payload;	
 		})
 		.addCase(registration.rejected, (state) => {
 			state.status = 'error';

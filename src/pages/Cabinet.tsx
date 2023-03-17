@@ -8,11 +8,11 @@ import { RootState } from '../store/store';
 const Cabinet: React.FC = () => {
 	const dispatch = useAppDispatch()
 	const { isLoading, isAuth, username, email } = useAppSelector((state: RootState) => state.auth)
+	console.log(isLoading, isAuth, username, email)
 
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
-			const refresh: string = cookies.get('token')
-			dispatch(refreshToken(refresh))
+			dispatch(refreshToken(cookies.get('token')))
 			dispatch(fetchUserInfo())
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
