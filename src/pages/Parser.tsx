@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { API_URL } from '../http';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAppSelector } from '../store/hooks';
+import { RootState } from '../store/store';
+import { useNavigate } from 'react-router-dom';
 
 interface IResponse {
 	task_id: string
@@ -11,6 +14,15 @@ interface IResponse {
 }
 
 const Parser: React.FC = () => {
+	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const redirect = useNavigate()
+
+	useEffect(() => {
+		if (!isAuth) {
+			redirect('/cabinet')
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuth])
 
 	const [value, setValue] = useState('')
 

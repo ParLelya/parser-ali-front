@@ -15,18 +15,18 @@ export interface UserState {
 
 export const cookies = new Cookies()
 
-export const refreshToken = createAsyncThunk<string,string,{ rejectValue: string }>(
-	'auth/refreshToken',
-	async (refresh: string, {rejectWithValue, dispatch}) => {
-		const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
-		if (!response) {
-			return rejectWithValue('Произошла ошибка авторизации')
-		}
-		localStorage.setItem('token', response.data)
-		dispatch(authSlice.actions.setIsAuth(true))
-		return response.data
-	}
-)
+// export const refreshToken = createAsyncThunk<string,string,{ rejectValue: string }>(
+// 	'auth/refreshToken',
+// 	async (refresh: string, {rejectWithValue, dispatch}) => {
+// 		const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
+// 		if (!response) {
+// 			return rejectWithValue('Произошла ошибка авторизации')
+// 		}
+// 		localStorage.setItem('token', response.data)
+// 		dispatch(authSlice.actions.setIsAuth(true))
+// 		return response.data
+// 	}
+// )
 
 export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
 	'auth/registration',
@@ -53,7 +53,7 @@ export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 			return rejectWithValue('Произошла ошибка при входе в систему')
 		}
 		localStorage.setItem('token', response.data.access)
-		cookies.set('token', response.data.refresh)
+		cookies.set('token', response.data.refresh, {sameSite: 'none', secure: true})
 		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
   	}
@@ -104,20 +104,20 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-		.addCase(refreshToken.fulfilled, (state) => {
-			state.status = 'finished';
-			state.isLoading = false;
-			state.isAuth = true;
-		})
-		.addCase(refreshToken.rejected, (state) => {
-			state.status = 'error';
-			state.isLoading = false;
-			state.isAuth = false;
-		})
-		.addCase(refreshToken.pending, (state) => {
-			state.status = 'loading';
-			state.isLoading = true;
-		})
+		// .addCase(refreshToken.fulfilled, (state) => {
+		// 	state.status = 'finished';
+		// 	state.isLoading = false;
+		// 	state.isAuth = true;
+		// })
+		// .addCase(refreshToken.rejected, (state) => {
+		// 	state.status = 'error';
+		// 	state.isLoading = false;
+		// 	state.isAuth = false;
+		// })
+		// .addCase(refreshToken.pending, (state) => {
+		// 	state.status = 'loading';
+		// 	state.isLoading = true;
+		// })
 		.addCase(registration.fulfilled, (state, action) => {
 			state.status = 'finished';
 			state.isLoading = false;

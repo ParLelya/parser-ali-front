@@ -11,8 +11,4 @@ export default class AuthService {
 	static async registration(value: ISignUp): Promise<AxiosResponse<IUser>> {
 		return $api.post<ISignUp>('/auth/signUp/', value)
 	}
-
-	// static async logout(): Promise<void> {
-	// 	return $api.post('/')
-	// }
 }

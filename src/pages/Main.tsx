@@ -1,15 +1,20 @@
-import React from 'react'
-import { Link, redirect, Location } from 'react-router-dom'
+import React, {useEffect} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../store/hooks'
 import { RootState } from '../store/store'
 
 const Main: React.FC = () => {
 
 	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const redirect = useNavigate()
 
-	if (!isAuth) {
-		redirect('/cabinet')
-	}
+	useEffect(() => {
+		if (!isAuth) {
+			redirect('/cabinet')
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuth])
+	
 
 	return (
 		<div className="collection menu" style={{ width: '100%' }}>

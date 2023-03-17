@@ -5,8 +5,20 @@ import { useInView } from 'react-intersection-observer';
 import { IProduct } from '../types/interface'
 import Item from '../components/Item'
 import Loader from '../components/Loader';
+import { useNavigate } from 'react-router';
+import { useAppSelector } from '../store/hooks';
+import { RootState } from '../store/store';
 
 const Products: React.FC = () => {
+	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const redirect = useNavigate()
+
+	useEffect(() => {
+		if (!isAuth) {
+			redirect('/cabinet')
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuth])
 	const [isLoading, setIsLoading] = useState(true)
 	const defaultItems: IProduct[] = [{ id: 0, name: '', images: '' }]
 	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)

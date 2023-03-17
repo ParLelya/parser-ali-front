@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { IProductItem } from '../types/interface';
 import { API_URL } from '../http';
+import { useAppSelector } from '../store/hooks';
+import { RootState } from '../store/store';
 // import Carousel from '../components/Carousel';
 
 interface IParamsObj {
@@ -14,6 +16,16 @@ interface IParamsObj {
 };
 
 const ConcreteProduct: React.FC = () => {
+	
+	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const redirect = useNavigate()
+
+	useEffect(() => {
+		if (!isAuth) {
+			redirect('/cabinet')
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuth])
 
 	const { id } = useParams()
 	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })

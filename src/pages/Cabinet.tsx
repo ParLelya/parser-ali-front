@@ -17,7 +17,7 @@ const Cabinet: React.FC = () => {
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			dispatch(fetchUserInfo())
-			dispatch(refreshToken(cookies.get('token')))
+			// dispatch(refreshToken(cookies.get('token')))
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
