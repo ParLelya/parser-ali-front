@@ -8,7 +8,7 @@ export interface ISignUp extends IAuth {
 }
 
 export interface IUser {
-	id: number
+	id?: number
 	username: string
 	email: string
 	is_active?: boolean

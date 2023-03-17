@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import AuthService from '../services/AuthService';
 import UserService from './../services/UserService';
 import { ISignUp, IUser, IToken, IAuth } from '../types/auth/User';
-import axios, {AxiosResponse} from 'axios';
+import axios from 'axios';
 import { API_URL } from './../http/index';
+import {Cookies} from 'react-cookie'
 
 export interface UserState {
   user: IUser;
@@ -12,22 +13,23 @@ export interface UserState {
   status: 'loading' | 'finished' | 'error' | null
 }
 
-export const login = createAsyncThunk<AxiosResponse<IToken>,IAuth,{ rejectValue: string }>(
-	'auth/login',
-	async function (value: IAuth, {rejectWithValue, dispatch}) {
-		console.log('выполняется вход')
-		const response = await AuthService.login(value)
+export const cookies = new Cookies()
+
+export const refreshToken = createAsyncThunk<string,string,{ rejectValue: string }>(
+	'auth/checkAuth',
+	async (refresh: string, {rejectWithValue, dispatch}) => {
+		console.log('выполняется повторная авторизация')
+		const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
 		if (!response) {
-			return rejectWithValue('Произошла ошибка при входе в систему')
+			return rejectWithValue('Произошла ошибка авторизации')
 		}
-		console.log(response)
-		localStorage.setItem('token', response.data.access)
+		localStorage.setItem('token', response.data)
 		dispatch(authSlice.actions.setIsAuth(true))
-		return response	
-  	}
+		return response.data
+	}
 )
 
-export const registration = createAsyncThunk<AxiosResponse<ISignUp>, ISignUp,{ rejectValue: string }>(
+export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
 	'auth/registration',
 	async function (value: ISignUp, {rejectWithValue, dispatch}) {
 		console.log('выполняется регистрация')
@@ -35,49 +37,49 @@ export const registration = createAsyncThunk<AxiosResponse<ISignUp>, ISignUp,{ r
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при регистрации')
 		}
-		console.log(response)
 		dispatch(authSlice.actions.setUser({
 			id: Date.now(),
 			username: response.data.username,
 			email: response.data.email
 		}))
-		return response
+		return response.data
 	}
 )
 
-export const fetchUserInfo = createAsyncThunk<AxiosResponse<IUser>,void,{ rejectValue: string }>(
+export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
+	'auth/login',
+	async function (value: IAuth, {rejectWithValue, dispatch}) {
+		console.log('выполняется вход')
+		const response = await AuthService.login(value)
+		if (!response) {
+			return rejectWithValue('Произошла ошибка при входе в систему')
+		}
+		localStorage.setItem('token', response.data.access)
+		cookies.set('token', response.data.refresh)
+		dispatch(authSlice.actions.setIsAuth(true))
+		return response.data
+  	}
+)
+
+export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }>(
 	'auth/fetchUserInfo',
 	async (_, {rejectWithValue, dispatch}) => {
 		console.log('выполняется открытие профиля')
 		const response = await UserService.getUser()
+		console.log(response.data)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при подгрузке данных профиля')
 		}
-		console.log(response);
-		dispatch(authSlice.actions.setUser(response.data))
-		return response
-	}
-)
-
-export const checkAuth = createAsyncThunk<AxiosResponse<string>,string,{ rejectValue: string }>(
-	'auth/checkAuth',
-	async (refreshToken: string, {rejectWithValue, dispatch}) => {
-		console.log('выполняется проверка авторизации')
-		dispatch(authSlice.actions.setIsLoading(false))
-		const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refreshToken)
-		console.log(response)
-		if (!response) {
-			return rejectWithValue('Произошла ошибка при проверке авторизации')
-		}
-		localStorage.setItem('token', response.data)
-		dispatch(authSlice.actions.setIsAuth(true))
-		return response
+		if (cookies.get('token')) {
+			dispatch(authSlice.actions.setIsAuth(true))
+			dispatch(authSlice.actions.setUser(response.data))
+		}	
+		return response.data
 	}
 )
 
 const initialState: UserState = {
-	user: 
-		{
+	user: {
 		  id: 0,
 		  username: "string",
 		  email: "user@example.com",
@@ -86,7 +88,7 @@ const initialState: UserState = {
 		}
 	,
 	isAuth: false,
-	isLoading: true,
+	isLoading: false,
     status: null
 };
   
@@ -106,58 +108,63 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-		.addCase(login.fulfilled, (state) => {
-			state.status = 'finished'
-			state.isAuth = true;
+		.addCase(refreshToken.fulfilled, (state) => {
+			state.status = 'finished';
 			state.isLoading = false;
+			state.isAuth = true;
 		})
-		.addCase(login.pending, (state) => {
-			state.status = 'loading'
-			state.isLoading = true;
-		})
-		.addCase(login.rejected, (state) => {
-			state.status = 'error'
+		.addCase(refreshToken.rejected, (state) => {
+			state.status = 'error';
+			state.isLoading = false;
 			state.isAuth = false;
+		})
+		.addCase(refreshToken.pending, (state) => {
+			state.status = 'loading';
+			state.isLoading = true;
 		})
 		.addCase(registration.fulfilled, (state, action) => {
-			state.status = 'finished'
-			state.user = action.payload
+			state.status = 'finished';
 			state.isLoading = false;
 			state.isAuth = true;
+			state.user = action.payload;		
 		})
 		.addCase(registration.rejected, (state) => {
-			state.status = 'error'
+			state.status = 'error';
 			state.isLoading = false;
 			state.isAuth = false;
+		})
+		.addCase(registration.pending, (state) => {
+			state.status = 'loading';
+			state.isLoading = true;
+		})
+		.addCase(login.fulfilled, (state) => {
+			state.status = 'finished';
+			state.isLoading = false;
+			state.isAuth = true;
+		})
+		.addCase(login.rejected, (state) => {
+			state.status = 'error';
+			state.isLoading = false;
+			state.isAuth = false;
+		})
+		.addCase(login.pending, (state) => {
+			state.status = 'loading';
+			state.isLoading = true;
 		})
 		.addCase(fetchUserInfo.fulfilled, (state, action) => {
-			state.status = 'finished'
-			state.user = action.payload
+			state.status = 'finished';
 			state.isLoading = false;
 			state.isAuth = true;
-		})
-		.addCase(fetchUserInfo.pending, (state) => {
-			state.status = 'loading'
-			state.isLoading = true;
+			state.user = action.payload;
 		})
 		.addCase(fetchUserInfo.rejected, (state) => {
-			state.status = 'error'
+			state.status = 'error';
 			state.isLoading = false;
+			state.isAuth = false;
 		})
-		.addCase(checkAuth.fulfilled, (state) => {
-			state.status = 'finished'
-			state.isLoading = false;
-			state.isAuth = true;
-		})
-		.addCase(checkAuth.pending, (state) => {
-			state.status = 'loading'
+		.addCase(fetchUserInfo.pending, (state) => {
+			state.status = 'loading';
 			state.isLoading = true;
-			state.isAuth = false;
-		})
-		.addCase(checkAuth.rejected, (state) => {
-			state.status = 'error'
-			state.isLoading = false;
-			state.isAuth = false;
 		})
   },
 });	

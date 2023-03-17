@@ -243,7 +243,7 @@ iframe {
 
 .profile-info {
 	background-color: white; 
-	color: #351BA9; 
+	color: #351BA9 !important; 
 	width: 15rem;
 	border-radius: 6px; 
 	border: 2px solid #351BA9;

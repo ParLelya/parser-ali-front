@@ -22,7 +22,6 @@ $api.interceptors.response.use((config) => {
 				const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, {refresh: ''})
 				localStorage.setItem('token', response.data)
 				return $api.request(originalRequest)
-			
 		} catch (error: any) {
 			console.error('Пользователь не авторизован')
 		}
