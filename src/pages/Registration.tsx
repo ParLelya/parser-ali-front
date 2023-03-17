@@ -11,6 +11,7 @@ const Registration: React.FC = () => {
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
 		dispatch(registration({ email, password, username }))
+		
 	}
 	
 	return (

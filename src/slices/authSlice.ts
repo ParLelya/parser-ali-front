@@ -16,9 +16,8 @@ export interface UserState {
 export const cookies = new Cookies()
 
 export const refreshToken = createAsyncThunk<string,string,{ rejectValue: string }>(
-	'auth/checkAuth',
+	'auth/refreshToken',
 	async (refresh: string, {rejectWithValue, dispatch}) => {
-		console.log('выполняется повторная авторизация')
 		const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка авторизации')
@@ -32,7 +31,6 @@ export const refreshToken = createAsyncThunk<string,string,{ rejectValue: string
 export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
 	'auth/registration',
 	async function (value: ISignUp, {rejectWithValue, dispatch}) {
-		console.log('выполняется регистрация')
 		const response = await AuthService.registration(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при регистрации')
@@ -42,6 +40,7 @@ export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: strin
 			username: response.data.username,
 			email: response.data.email
 		}))
+		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
 	}
 )
@@ -49,7 +48,6 @@ export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: strin
 export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 	'auth/login',
 	async function (value: IAuth, {rejectWithValue, dispatch}) {
-		console.log('выполняется вход')
 		const response = await AuthService.login(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при входе в систему')
@@ -64,9 +62,7 @@ export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }>(
 	'auth/fetchUserInfo',
 	async (_, {rejectWithValue, dispatch}) => {
-		console.log('выполняется открытие профиля')
 		const response = await UserService.getUser()
-		console.log(response.data)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при подгрузке данных профиля')
 		}
