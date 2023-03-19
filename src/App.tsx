@@ -10,6 +10,8 @@ import Products from './pages/Products';
 import Cabinet from './pages/Cabinet';
 import ConcreteProduct from './pages/ConcreteProduct';
 import Registration from './pages/Registration';
+import Projects from './pages/Projects';
+import ConcreteProject from './pages/ConcreteProject';
 
 const App: React.FC = () => {
 
@@ -24,6 +26,8 @@ const App: React.FC = () => {
 					<Route path="/parse" element={<Parser />} />
 					<Route path="/products/*" element={<Products />} />
 					<Route path="/products/:id" element={<ConcreteProduct />} />
+					<Route path="/projects/*" element={<Projects />} />
+					<Route path="/projects/:id" element={<ConcreteProject />} />
 					<Route path="/cabinet" element={<Cabinet />} />
 					<Route path="/registration" element={<Registration />} />
 					<Route path="/*" element={<NotFound />} />

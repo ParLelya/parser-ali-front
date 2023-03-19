@@ -16,7 +16,7 @@ const Products: React.FC = () => {
 		if (!isAuth) {
 			redirect('/cabinet')
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuth])
 	const [isLoading, setIsLoading] = useState(true)
 	const defaultItems: IProduct[] = [{ id: 0, name: '', images: '' }]
@@ -56,15 +56,22 @@ const Products: React.FC = () => {
 		}
 	})
 
+	if (!products.length) {
+		return <h3 style={{color: 'black', textShadow: '0px 2px 4px white'}}>Список продуктов пуст :(</h3>
+	}
+
 	return (
-		<div className='products'>
-			{
-				isLoading
-					? <Loader />
-					: products.map((obj: IProduct) => <Item {...obj} key={obj.id} />)
-			}
-			<div ref={ref} style={{ width: '100%', height: '1rem' }}></div>
-		</div>
+		<>
+			<h1>Мои продукты</h1>
+			<div className='products'>
+				{
+					isLoading
+						? <Loader />
+						: products.map((obj: IProduct) => <Item {...obj} key={obj.id} />)
+				}
+				<div ref={ref} style={{ width: '100%', height: '1rem' }}></div>
+			</div>
+		</>
 	)
 }
 

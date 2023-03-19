@@ -1,6 +1,5 @@
 import React, {useRef} from 'react'
-import axios from 'axios'
-import { API_URL } from '../http'
+import $api from '../http'
 import { Link } from 'react-router-dom'
 import { IProduct } from '../types/interface'
 
@@ -13,7 +12,7 @@ const Item: React.FC<IProduct> = (props) => {
 
 	const deleteProduct = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
-		axios.delete(`${API_URL}/api/products/${id}/`)
+		$api.delete(`/api/products/${id}/`)
 		.then(() => (divRef.current?.remove()))
 	}
 
