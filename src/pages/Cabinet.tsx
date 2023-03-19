@@ -4,6 +4,7 @@ import Loader from '../components/Loader';
 import { /*cookies, refreshToken,*/ fetchUserInfo, setIsAuth } from './../slices/authSlice';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { RootState } from '../store/store';
+import ModalInfo from '../components/ModalInfo';
 
 const Cabinet: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -12,6 +13,10 @@ const Cabinet: React.FC = () => {
 	const handleClick = () => {
 		localStorage.removeItem('token')
 		dispatch(setIsAuth(false))
+	}
+
+	const patchInfo = () => {
+		return <ModalInfo/>
 	}
 
 	useEffect(() => {
@@ -40,8 +45,11 @@ const Cabinet: React.FC = () => {
 								<span className='btn profile-info'>{user.email}</span>
 							</div>
 							<button
-								className='btn'
-								style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px', justifySelf: 'center' }}
+								className='btn my-btn-blue'
+								onClick={patchInfo}
+							>Изменить данные</button>
+							<button
+								className='btn my-btn-white'
 								onClick={handleClick}
 							>Выйти</button>
 						</div>

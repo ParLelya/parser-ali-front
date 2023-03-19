@@ -5,6 +5,7 @@ import { ISignUp, IUser, IToken, IAuth } from '../types/auth/User';
 // import axios from 'axios';
 // import { API_URL } from './../http/index';
 import {Cookies} from 'react-cookie'
+import $api from '../http';
 
 export interface UserState {
   user: IUser;
@@ -30,8 +31,8 @@ export const cookies = new Cookies()
 
 export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
 	'auth/registration',
-	async function (value: ISignUp, {rejectWithValue, dispatch}) {
-		const response = await AuthService.registration(value)
+	async function ({email, password, username}, {rejectWithValue, dispatch}) {
+		const response = await AuthService.registration(email, password, username)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при регистрации')
 		}
@@ -73,6 +74,22 @@ export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }
 			dispatch(authSlice.actions.setUser(response.data))
 			dispatch(authSlice.actions.setIsLoading(false))
 		}
+		return response.data
+	}
+)
+
+export const patchUserInfo = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
+	'auth/patchUserInfo',
+	async function ({email, password, username}, {rejectWithValue, dispatch}) {
+		const response = await UserService.updateUser(email, password, username)
+		if (!response) {
+			return rejectWithValue('Произошла ошибка при обновлении данных')
+		}
+		dispatch(authSlice.actions.setUser({
+			username: response.data.username,
+			email: response.data.email
+		}))
+		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
 	}
 )
