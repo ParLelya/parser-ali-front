@@ -34,8 +34,10 @@ const Item: React.FC<IProduct> = (props) => {
 						<button
 							className="btn-flat btn-small waves-effect"
 							onClick={deleteProduct}
+							style={{width: '100%', height: '100%', padding: '5px'}}
 						>
-							Удалить <i className="material-icons right">close</i>
+							<span style={{padding: '10px 0'}}>Удалить </span>
+								<i className="material-icons " style={{padding: '10px 0'}}>close</i>
 						</button>
 					</div>
 				</div>

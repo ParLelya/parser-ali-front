@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { IProductItem } from '../types/interface';
-import { API_URL } from '../http';
+import $api, { API_URL } from '../http';
 import { useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 // import Carousel from '../components/Carousel';
@@ -17,7 +17,7 @@ interface IParamsObj {
 
 const ConcreteProduct: React.FC = () => {
 	
-	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
 	useEffect(() => {
@@ -32,7 +32,7 @@ const ConcreteProduct: React.FC = () => {
 	const [param, setParam] = useState<IParamsObj[]>()
 
 	useEffect(() => {
-		axios.get<IProductItem>(`${API_URL}/api/products/${id}/`)
+		$api.get<IProductItem>(`/api/products/${id}/`)
 			.then(response => {
 				const name = response.data.name
 				const unique_id = response.data.unique_id

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AuthForm from '../components/AuthForm'
 import Loader from '../components/Loader';
-import { cookies, refreshToken, fetchUserInfo, setIsAuth } from './../slices/authSlice';
+import { /*cookies, refreshToken,*/ fetchUserInfo, setIsAuth } from './../slices/authSlice';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { RootState } from '../store/store';
 

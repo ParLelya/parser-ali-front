@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { API_URL } from '../http';
+import $api from '../http';
 import { useInView } from 'react-intersection-observer';
 import { IProduct } from '../types/interface'
 import Item from '../components/Item'
@@ -10,7 +9,7 @@ import { useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 
 const Products: React.FC = () => {
-	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
 	useEffect(() => {
@@ -31,7 +30,7 @@ const Products: React.FC = () => {
 	}
 
 	useEffect(() => {
-		axios.get(`${API_URL}/api/products/?limits=${limit}&page=${page}`)
+		$api.get(`/api/products/?limits=${limit}&page=${page}`)
 			.then(response => {
 				setProducts(response.data.results)
 				setIsLoading(false)
@@ -48,7 +47,7 @@ const Products: React.FC = () => {
 			if (inView) {
 				setPage(prev => prev + 1)
 				if (page >= 2 && page <= totalPages) {
-					axios.get(`${API_URL}/api/products/?limits=${limit}&page=${page}`)
+					$api.get(`/api/products/?limits=${limit}&page=${page}`)
 						.then(response => {
 							setProducts([...products, ...response.data.results])
 						})

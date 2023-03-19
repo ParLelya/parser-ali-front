@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { cookies, login, refreshToken } from '../slices/authSlice'
+import { /* cookies, refreshToken, */ login } from '../slices/authSlice'
 import { useAppDispatch } from '../store/hooks';
 
 const AuthForm: React.FC = () => {

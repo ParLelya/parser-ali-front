@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { API_URL } from '../http';
+import $api from '../http';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppSelector } from '../store/hooks';
@@ -14,7 +13,7 @@ interface IResponse {
 }
 
 const Parser: React.FC = () => {
-	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
 	useEffect(() => {
@@ -33,7 +32,7 @@ const Parser: React.FC = () => {
 	}
 
 	const parse = () => {
-		axios.post<IResponse>(`${API_URL}/api/scrape/`, { "url": value })
+		$api.post<IResponse>(`/api/scrape/`, { "url": value})
 			.then((response) => {
 				if (response.data.task_id) {
 					toast.success('Успешно отправлено на парсинг')

@@ -5,7 +5,7 @@ export const API_URL = `https://parserali.me`
 
 const $api = axios.create({
 	withCredentials: true,
-	baseURL: API_URL
+	baseURL: API_URL,
 })
 
 $api.interceptors.request.use((config) => {
@@ -24,7 +24,7 @@ $api.interceptors.response.use((config) => {
 				localStorage.setItem('token', response.data)
 				return $api.request(originalRequest)
 		} catch (error: any) {
-			console.error('Пользователь не авторизован')
+			console.error('Токен не найден. Необходимо заново войти в свой профиль.')
 		}
 	} 
 	throw error;

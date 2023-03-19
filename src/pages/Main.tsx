@@ -5,7 +5,7 @@ import { RootState } from '../store/store'
 
 const Main: React.FC = () => {
 
-	const { isAuth } = useAppSelector((state: RootState) => state.auth.isAuth)
+	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
 	useEffect(() => {

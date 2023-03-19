@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import AuthService from '../services/AuthService';
 import UserService from './../services/UserService';
 import { ISignUp, IUser, IToken, IAuth } from '../types/auth/User';
-import axios from 'axios';
-import { API_URL } from './../http/index';
+// import axios from 'axios';
+// import { API_URL } from './../http/index';
 import {Cookies} from 'react-cookie'
 
 export interface UserState {
@@ -62,14 +62,17 @@ export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }>(
 	'auth/fetchUserInfo',
 	async (_, {rejectWithValue, dispatch}) => {
+		dispatch(authSlice.actions.setIsLoading(true))
 		const response = await UserService.getUser()
 		if (!response) {
+			dispatch(authSlice.actions.setIsLoading(false))
 			return rejectWithValue('Произошла ошибка при подгрузке данных профиля')
 		}
 		if (cookies.get('token')) {
 			dispatch(authSlice.actions.setIsAuth(true))
 			dispatch(authSlice.actions.setUser(response.data))
-		}	
+			dispatch(authSlice.actions.setIsLoading(false))
+		}
 		return response.data
 	}
 )
