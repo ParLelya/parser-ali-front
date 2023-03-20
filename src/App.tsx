@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom"
 import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
 import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 import Parser from './pages/Parser';

@@ -5,7 +5,6 @@ import { ISignUp, IUser, IToken, IAuth } from '../types/auth/User';
 // import axios from 'axios';
 // import { API_URL } from './../http/index';
 import {Cookies} from 'react-cookie'
-import $api from '../http';
 
 export interface UserState {
   user: IUser;
@@ -179,6 +178,20 @@ export const authSlice = createSlice({
 			state.isAuth = false;
 		})
 		.addCase(fetchUserInfo.pending, (state) => {
+			state.status = 'loading';
+			state.isLoading = true;
+		})
+		.addCase(patchUserInfo.fulfilled, (state, action) => {
+			state.status = 'finished';
+			state.isLoading = false;
+			state.isAuth = true;
+			state.user = action.payload;
+		})
+		.addCase(patchUserInfo.rejected, (state) => {
+			state.status = 'error';
+			state.isLoading = false;
+		})
+		.addCase(patchUserInfo.pending, (state) => {
 			state.status = 'loading';
 			state.isLoading = true;
 		})
