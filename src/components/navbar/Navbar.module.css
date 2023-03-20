@@ -1,0 +1,9 @@
+.navbar {
+	width: 100%;
+	box-shadow: none;
+}
+
+.nav_to_cab {
+	color: #351BA9 !important;
+	border-radius: 0 30px 0 0;
+}

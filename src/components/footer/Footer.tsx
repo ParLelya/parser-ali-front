@@ -1,8 +1,9 @@
 import React from 'react'
+import classes from './Footer.module.css'
 
 const Footer: React.FC = () => {
 	return (
-		<footer className="page-footer transparent">
+		<footer className={classes.footer + ' page-footer transparent'}>
 			<div className="container" style={{margin: '0'}}>
 				<div className="row">
 					<div className="col m6 s12">

@@ -22,7 +22,7 @@ export interface IProjectItem extends IProject {
 		  title: string
 		  parameters: string
 		  count: number
-		  from_whom?: string
+		  from_whom: string
 		}
 	  ]
 }

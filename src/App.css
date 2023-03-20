@@ -33,16 +33,6 @@ header {
 	color: #351BA9 !important;
 }
 
-.navbar {
-	width: 100%;
-	box-shadow: none;
-}
-
-.nav-to-cab {
-	color: #351BA9 !important;
-	border-radius: 0 30px 0 0;
-}
-
 main {
 	display: flex;
 	/* flex: 1 0 auto; */
@@ -266,6 +256,7 @@ iframe {
 	color: #351BA9;
 	border: 2px solid #351BA9;
 	border-radius: 6px;
+	width: 15rem;
 }
 
 .my-btn-white:hover {
@@ -276,6 +267,7 @@ iframe {
 	background-color: #351BA9;
 	color: #fff;
 	border-radius: 6px;
+	width: 15rem;
 }
 .my-btn-blue:hover {
 	background-color: #351BA9;
@@ -312,18 +304,18 @@ iframe {
 	border: 2px solid #351BA9;
 	cursor: default;
 }
+
 .profile-info:hover {
 	background-color: white;
-}
-
-footer {
-	color: #000 !important;
-	width: 100%;
-	align-self: flex-end;
 }
 
 @media only screen and (max-width: 992px) {
 	nav .brand-logo {
 		transform: translateX(0%);
+	}
+
+	div .my-modal {
+		width: 70vw;
+		height: 90vw;
 	}
 }

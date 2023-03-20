@@ -6,6 +6,7 @@ import { IProduct } from '../types/interface'
 const Item: React.FC<IProduct> = (props) => {
 
 	const { id, name, images } = props
+	
 	const url = images.split(',')[0].replace(/\[|\]|\{|\}|\'/g, '').split(' ')[1]
 
 	const divRef = useRef<HTMLDivElement | null>(null)

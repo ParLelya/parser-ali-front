@@ -27,9 +27,16 @@ const Main: React.FC = () => {
 			<Link
 				to="/products"
 				className="collection-item transparent"
-				style={{ margin: '1rem 0' }}
+				style={{ margin: '1rem 0', paddingBottom: '2rem' }}
 			>
 				Мои продукты
+			</Link>
+			<Link
+				to="/projects"
+				className="collection-item transparent"
+				style={{ margin: '1rem 0', paddingBottom: '2rem' }}
+			>
+				Мои проекты
 			</Link>
 		</div>
 	)

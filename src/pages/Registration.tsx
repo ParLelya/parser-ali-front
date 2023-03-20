@@ -5,9 +5,11 @@ import { useAppDispatch } from '../store/hooks';
 
 const Registration: React.FC = () => {
 	const dispatch = useAppDispatch()
+
 	const [username, setUsername] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
+	
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
 		dispatch(registration({ email, password, username }))
@@ -56,12 +58,11 @@ const Registration: React.FC = () => {
 				</div>
 				<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
 					<button
-						className='btn'
+						className='btn my-btn-blue'
 						type='submit'
-						style={{ backgroundColor: "#351BA9", width: '15rem', borderRadius: '6px' }}
 						onClick={handleClick}
 					>Зарегистрироваться</button>
-					<Link to='/cabinet' className='btn' style={{ backgroundColor: "#fff", color: '#351BA9', width: '15rem', borderRadius: '6px', border: '2px solid #351BA9' }}>Войти</Link>
+					<Link to='/cabinet' className='btn my-btn-white'>Войти</Link>
 				</div>
 			</form>
 		</div>

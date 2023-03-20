@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { IProductItem } from '../types/interface';
-import $api, { API_URL } from '../http';
+import $api from '../http';
 import { useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 // import Carousel from '../components/Carousel';
@@ -58,7 +57,8 @@ const ConcreteProduct: React.FC = () => {
 				setItem(item)
 			})
 			.catch(error => console.log(error.message))
-	}, [id])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<div className='product-item'>
