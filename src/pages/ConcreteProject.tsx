@@ -58,7 +58,7 @@ const ConcreteProject: React.FC = () => {
 					</tr>
 				</tbody>
 			</table>
-			<button className='btn my-btn-blue' onClick={handleDelete}>Удалить проект</button>
+			<button className='btn my-btn-red' onClick={handleDelete}>Удалить проект</button>
 		</div>
 	)
 }

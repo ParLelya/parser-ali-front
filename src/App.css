@@ -273,6 +273,16 @@ iframe {
 	background-color: #351BA9;
 }
 
+.my-btn-red {
+	background-color: #C81818;
+	color: #fff;
+	border-radius: 6px;
+	width: 15rem;
+}
+.my-btn-red:hover {
+	background-color: #C81818;
+}
+
 .profile {
 	display: flex;
 	justify-content: center;
