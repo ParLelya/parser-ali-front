@@ -318,14 +318,18 @@ iframe {
 .profile-info:hover {
 	background-color: white;
 }
+table, th, td {
+	color: black;
+	font-size: 1.2rem;
+}
 
 @media only screen and (max-width: 992px) {
 	nav .brand-logo {
 		transform: translateX(0%);
 	}
 
-	div .my-modal {
-		width: 70vw;
-		height: 90vw;
+	div form.my-modal {
+		width: 80vw;
+		height: 40vh;
 	}
 }

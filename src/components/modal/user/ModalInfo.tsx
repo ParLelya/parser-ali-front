@@ -27,8 +27,11 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 			className={open ? 'modal_bg active' : 'modal_bg'}
 			onClick={() => setOpen(false)}
 		>
-			<form className="my-modal" onClick={e => { e.stopPropagation() }}>
-				<legend><h3>Введите новые данные</h3></legend>
+			<form
+				className="my-modal"
+				onClick={e => { e.stopPropagation() }}
+			>
+				<legend><h5>Введите новые данные</h5></legend>
 				<div className="row">
 					<div className="input-field col s12">
 						<input

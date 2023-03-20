@@ -36,14 +36,16 @@ const ConcreteProduct: React.FC = () => {
 				const name = response.data.name
 				const unique_id = response.data.unique_id
 				const additional_parameters = response.data.additional_parameters
+
 				const images = response.data.images
-				const parameters = response.data.parameters
 				const fixedImages = images.replace(/\'/g, '\"')
-				const fixedParameters = parameters!.replace(/\'/g, '\"')
 				const parsedImages = JSON.parse(fixedImages)
-				const parsedParameters = JSON.parse(fixedParameters)
 				const url = parsedImages[0].image
 
+				const parameters = response.data.parameters
+				const fixedParameters = parameters!.replace(/\'/g, '\"')
+				const parsedParameters = JSON.parse(fixedParameters)
+				
 				setParam(parsedParameters)
 
 				const item: IProductItem = {

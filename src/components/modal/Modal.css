@@ -14,8 +14,8 @@
 }
 
 .my-modal {
-	width: 50vw;
-	height: 45vw;
+	width: 60vw;
+	max-height: 60vh;
 	background-color: white;
 }
 

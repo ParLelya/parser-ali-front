@@ -19,7 +19,7 @@ const Projects: React.FC = () => {
 				setIsLoading(false)
 			})
 			.catch(error => console.error(error.message))
-	}, [])
+	}, [open])
 
 	return (
 		<>
@@ -30,7 +30,7 @@ const Projects: React.FC = () => {
 						? <Loader />
 						: projects.map((obj: IProject) => <ProjectCard id={obj.id} title={obj.title}  key={obj.id}/>)
 				}
-				<div className='create-project project-card'>
+				<div className='create-project project-card' onClick={() => setOpen(true)}>
 					<i className="material-icons" style={{ fontSize: '6rem' }}>add</i>
 					<span>Нажмите, чтобы создать новый проект</span>
 				</div>

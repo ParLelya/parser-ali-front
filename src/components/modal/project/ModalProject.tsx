@@ -17,8 +17,7 @@ const ModalProject: React.FC<IModalProps> = ({ open, setOpen }) => {
 
 	const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
-		$api.post(`/api/projects/`, {title, id})
-			.then()
+		$api.post(`/api/projects/`, { title, id })
 			.catch(error => console.log(error.message))
 		setOpen(false)
 	}
@@ -28,8 +27,12 @@ const ModalProject: React.FC<IModalProps> = ({ open, setOpen }) => {
 			className={open ? 'modal_bg active' : 'modal_bg'}
 			onClick={() => setOpen(false)}
 		>
-			<form className="my-modal" onClick={e => { e.stopPropagation() }}>
-				<legend><h3>Создание нового проекта</h3></legend>
+			<form
+				className="my-modal"
+				onClick={e => e.stopPropagation()}
+				style={{ height: '30vh' }}
+			>
+				<legend><h5>Создание нового проекта</h5></legend>
 				<div className="row">
 					<div className="input-field col s12">
 						<input
