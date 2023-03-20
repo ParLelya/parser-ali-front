@@ -51,7 +51,7 @@ const Cabinet: React.FC = () => {
 									onClick={patchInfo}
 								>Изменить данные</button>
 								<button
-									className='btn my-btn-white'
+									className='btn my-btn-red'
 									onClick={handleClick}
 								>Выйти</button>
 							</div>

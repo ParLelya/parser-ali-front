@@ -32,12 +32,10 @@ const Item: React.FC<IProduct> = (props) => {
 					</div>
 					<div className="card-action">
 						<button
-							className="btn-flat btn-small waves-effect"
+							className="btn btn-small my-btn-red"
 							onClick={deleteProduct}
-							style={{width: '100%', height: '100%', padding: '5px'}}
 						>
-							<span style={{padding: '10px 0'}}>Удалить </span>
-								<i className="material-icons " style={{padding: '10px 0'}}>close</i>
+							Удалить
 						</button>
 					</div>
 				</div>
