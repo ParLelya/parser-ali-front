@@ -1,7 +1,6 @@
-import $api from "../http";
-import { AxiosResponse } from "axios";
+import $api, {API_URL} from "../http";
+import axios, { AxiosResponse } from "axios";
 import { ISignUp, IAuth, IToken, IUser } from "../types/auth/User";
-import {  } from './../types/auth/User';
 
 export default class AuthService {
 	static async login(value: IAuth): Promise<AxiosResponse<IToken, IUser>> {
@@ -9,6 +8,6 @@ export default class AuthService {
 	}
 
 	static async registration(email: string, password: string, username: string): Promise<AxiosResponse<IUser>> {
-		return $api.post<ISignUp>('/auth/signUp/', {email, password, username})
+		return axios.post<ISignUp>(`${API_URL}/auth/signUp/`, {email, password, username})
 	}
 }
