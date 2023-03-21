@@ -25,7 +25,7 @@ const ConcreteProject: React.FC = () => {
 	useEffect(() => {
 		$api.get<IProjectItem>(`/api/projects/${id}/`)
 			.then(response => {
-				const products = response.data.products
+				const products = response.data.products //распарсить надо 
 				setItem(response.data)
 			})
 			.catch(error => console.log(error.message))
@@ -53,11 +53,11 @@ const ConcreteProject: React.FC = () => {
 				</thead>
 				<tbody>
 					<tr>
-						<td>{item.products?.length}</td>
-						<td>{item.products[0]?.title}</td>
-						<td>{item.products[0]?.count}</td>
-						<td>{item.products[0]?.parameters}</td>
-						<td>{item.products[0]?.from_whom}</td>
+						<td>{item.products?.length}</td>		{/* сделать итерацию по длине массива */}
+						<td>{item.products[0]?.title}</td> 		{/* по индексу вытягиваем тайтл */}
+						<td>{item.products[0]?.count}</td>		{/* по индексу вытягиваем количество */}
+						<td>{item.products[0]?.parameters}</td> {/* по индексу вытягиваем параметры, надо их распарсить */}
+						<td>{item.products[0]?.from_whom}</td>  {/* по индексу вытягиваем условно продавца */}
 					</tr>
 				</tbody>
 			</table>
