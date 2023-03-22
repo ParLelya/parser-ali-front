@@ -106,7 +106,7 @@ const ConcreteProduct: React.FC = () => {
 					/>
 				</div>
 			</div>
-			<Dropdown />
+			<Dropdown {...item} />
 		</div >
 	)
 }

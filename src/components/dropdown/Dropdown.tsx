@@ -1,18 +1,43 @@
 import React, { useState } from 'react'
 import $api from '../../http'
-import { IProject } from '../../types/interface'
+import { IProductItem, IProject } from '../../types/interface'
 import './Dropdown.css'
 
-const Dropdown: React.FC = () => {
+interface IProductInProject {
+	title: string
+	parameters: string
+	from_whom: string
+	count: number
+	project: number
+}
+
+const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 
 	const defaultItems: IProject[] = [{ id: 0, title: '' }]
 	const [projects, setProjects]: [IProject[], (items: IProject[]) => void] = useState(defaultItems)
 	const [open, setOpen] = useState(false)
+	const [selectedProject, setSelectedProject] = useState(0)
 
 	const handleClick = () => {
 		$api.get(`/api/projects/`)
 			.then(response => {
 				setProjects(response.data)
+			})
+			.catch(error => console.error(error.message))
+		setOpen(!open)
+	}
+
+	const pushProduct = (index: number) => {
+		setSelectedProject(index)
+		$api.post<IProductInProject>(`/api/product_project/`, {
+			title: name,
+			parameters: parameters,
+			from_whom: 'Ali',
+			count: 1,
+			project: selectedProject,
+		})
+			.then(response => {
+				return response.data
 			})
 			.catch(error => console.error(error.message))
 		setOpen(!open)
@@ -37,8 +62,8 @@ const Dropdown: React.FC = () => {
 						{
 							projects.map((obj: IProject) => {
 								return (
-									<li key={obj.id}>
-										<span className='my-dropdown-label'>{obj.title}</span>	
+									<li key={obj.id} onClick={() => pushProduct(obj.id!)}>
+										<span className='my-dropdown-label'>{obj.title}</span>
 									</li>
 								)
 							})
