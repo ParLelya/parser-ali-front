@@ -7,7 +7,7 @@ export default class AuthService {
 		return $api.post<IToken>('/auth/token/', value)
 	}
 
-	static async registration(email: string, password: string, username: string): Promise<AxiosResponse<IUser>> {
-		return axios.post<ISignUp>(`${API_URL}/auth/signUp/`, {email, password, username})
+	static async registration(value: ISignUp): Promise<AxiosResponse<IUser>> {
+		return axios.post<ISignUp>(`${API_URL}/auth/signUp/`, value)
 	}
 }

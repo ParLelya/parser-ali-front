@@ -30,8 +30,8 @@ export const cookies = new Cookies()
 
 export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
 	'auth/registration',
-	async function ({email, password, username}, {rejectWithValue, dispatch}) {
-		const response = await AuthService.registration(email, password, username)
+	async function (value, {rejectWithValue, dispatch}) {
+		const response = await AuthService.registration(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при регистрации')
 		}
