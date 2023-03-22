@@ -5,6 +5,7 @@ import $api from '../http';
 import { useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 // import Carousel from '../components/Carousel';
+import Dropdown from '../components/dropdown/Dropdown';
 
 interface IParamsObj {
 	title: string;
@@ -15,7 +16,7 @@ interface IParamsObj {
 };
 
 const ConcreteProduct: React.FC = () => {
-	
+
 	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
@@ -23,7 +24,7 @@ const ConcreteProduct: React.FC = () => {
 		if (!isAuth) {
 			redirect('/cabinet')
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuth])
 
 	const { id } = useParams()
@@ -45,7 +46,7 @@ const ConcreteProduct: React.FC = () => {
 				const parameters = response.data.parameters
 				const fixedParameters = parameters!.replace(/\'/g, '\"')
 				const parsedParameters = JSON.parse(fixedParameters)
-				
+
 				setParam(parsedParameters)
 
 				const item: IProductItem = {
@@ -59,7 +60,7 @@ const ConcreteProduct: React.FC = () => {
 				setItem(item)
 			})
 			.catch(error => console.log(error.message))
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
@@ -76,7 +77,7 @@ const ConcreteProduct: React.FC = () => {
 						param?.map((item, index) => {
 							return (
 								<div className='product-info' key={index}>
-									<h6 style={{margin: '1rem 0'}}>{item.title}</h6>
+									<h6 style={{ margin: '1rem 0' }}>{item.title}</h6>
 									<div className='parameter'>
 										{
 											item.info.map((detail, id) => (
@@ -105,6 +106,7 @@ const ConcreteProduct: React.FC = () => {
 					/>
 				</div>
 			</div>
+			<Dropdown />
 		</div >
 	)
 }

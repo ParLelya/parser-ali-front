@@ -72,6 +72,10 @@ button {
 	margin: 0.5rem;
 }
 
+.btn {
+	transition: none !important;
+}
+
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]) {
