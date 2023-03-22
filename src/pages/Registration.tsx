@@ -6,9 +6,9 @@ import { useAppDispatch } from '../store/hooks';
 const Registration: React.FC = () => {
 	const dispatch = useAppDispatch()
 
-	const [username, setUsername] = useState<string>('')
-	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
+	const [username, setUsername] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
 	
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()

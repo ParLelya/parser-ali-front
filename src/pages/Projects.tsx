@@ -8,9 +8,9 @@ import ModalProject from './../components/modal/project/ModalProject';
 const Projects: React.FC = () => {
 
 	const defaultItems: IProject[] = [{ id: 0, title: '' }]
-	const [projects, setProjects]: [IProject[], (items: IProject[]) => void] = useState(defaultItems)
+	const [projects, setProjects] = useState<IProject[]>(defaultItems)
 	const [isLoading, setIsLoading] = useState(true)
-	const [open, setOpen] = useState<boolean>(false)
+	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
 		$api.get(`/api/projects/`)

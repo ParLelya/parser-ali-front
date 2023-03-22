@@ -20,7 +20,7 @@ const Products: React.FC = () => {
 	}, [isAuth])
 	const [isLoading, setIsLoading] = useState(true)
 	const defaultItems: IProduct[] = [{ id: 0, name: '', images: '' }]
-	const [products, setProducts]: [IProduct[], (items: IProduct[]) => void] = useState(defaultItems)
+	const [products, setProducts] = useState<IProduct[]>(defaultItems)
 	const [limit, setLimit] = useState(5);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);

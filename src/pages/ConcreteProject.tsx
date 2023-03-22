@@ -19,7 +19,7 @@ const ConcreteProject: React.FC = () => {
 			count: 0
 		}]
 	}
-	const [item, setItem]: [IProjectItem, (item: IProjectItem) => void] = useState(defaultItem)
+	const [item, setItem] = useState<IProjectItem>(defaultItem)
 
 
 	useEffect(() => {

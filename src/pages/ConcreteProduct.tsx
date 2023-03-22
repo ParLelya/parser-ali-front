@@ -28,8 +28,9 @@ const ConcreteProduct: React.FC = () => {
 	}, [isAuth])
 
 	const { id } = useParams()
-	const [item, setItem]: [IProductItem, (item: IProductItem) => void] = useState({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })
+	const [item, setItem] = useState<IProductItem>({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })
 	const [param, setParam] = useState<IParamsObj[]>()
+	
 
 	useEffect(() => {
 		$api.get<IProductItem>(`/api/products/${id}/`)

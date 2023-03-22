@@ -30,11 +30,11 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 	const pushProduct = (index: number) => {
 		setSelectedProject(index)
 		$api.post<IProductInProject>(`/api/product_project/`, {
-			title: name,
-			parameters: parameters,
-			from_whom: 'Ali',
-			count: 1,
-			project: selectedProject,
+			"title": name,
+			"parameters": parameters,
+			"from_whom": 'Ali',
+			"count": 1,
+			"project": selectedProject,
 		})
 			.then(response => {
 				return response.data
