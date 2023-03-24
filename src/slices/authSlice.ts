@@ -36,7 +36,7 @@ export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: strin
 			return rejectWithValue('Произошла ошибка при регистрации')
 		}
 		dispatch(authSlice.actions.setUser({
-			id: Date.now(),
+			id: response.data.id,
 			username: response.data.username,
 			email: response.data.email
 		}))
