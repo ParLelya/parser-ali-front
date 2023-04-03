@@ -5,8 +5,9 @@ import { useAppDispatch } from '../store/hooks';
 
 const AuthForm: React.FC = () => {
 	const dispatch = useAppDispatch()
-	const [email, setEmail] = useState<string>('')
-	const [password, setPassword] = useState<string>('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {	
 		event.preventDefault()
 		dispatch(login({ email, password }))

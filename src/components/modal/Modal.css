@@ -23,3 +23,16 @@
 	opacity: 1;
 	pointer-events: all;
 }
+
+.input-field {
+	display: flex;
+}
+
+.my-modal input {
+	width: 60%;
+}
+
+.my-modal.my-btn-blue {
+	width: 30%;
+	font-size: 1rem;
+}

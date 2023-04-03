@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import AuthService from '../services/AuthService';
-import UserService from './../services/UserService';
+import UserService, { IPatchInfo } from './../services/UserService';
 import { ISignUp, IUser, IToken, IAuth } from '../types/auth/User';
 // import axios from 'axios';
 // import { API_URL } from './../http/index';
@@ -77,10 +77,10 @@ export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }
 	}
 )
 
-export const patchUserInfo = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
+export const patchUserInfo = createAsyncThunk<IUser, IPatchInfo,{ rejectValue: string }>(
 	'auth/patchUserInfo',
-	async function ({email, password, username}, {rejectWithValue, dispatch}) {
-		const response = await UserService.updateUser(email, password, username)
+	async function (value: IPatchInfo, {rejectWithValue, dispatch}) {
+		const response = await UserService.updateUser(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при обновлении данных')
 		}

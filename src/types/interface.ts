@@ -6,12 +6,14 @@ export interface IProduct {
 
 export interface IProductItem extends IProduct {
 	unique_id: string
+	from_whom: string
+	prices: string
 	parameters: string
 	additional_parameters: string
 }
 
 export interface IProject {
-	id?: number
+	id: number
 	title: string
 	user?: number
 }

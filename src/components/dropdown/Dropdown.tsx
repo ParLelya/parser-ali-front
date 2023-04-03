@@ -9,6 +9,7 @@ interface IProductInProject {
 	from_whom: string
 	count: number
 	project: number
+	price: number
 }
 
 const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
@@ -34,11 +35,12 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 			"parameters": parameters,
 			"from_whom": 'Ali',
 			"count": 1,
+			"price": 0,
 			"project": selectedProject,
 		})
-			.then(response => {
-				return response.data
-			})
+		.then(response => {
+			return response.data
+		})
 			.catch(error => console.error(error.message))
 		setOpen(!open)
 	}
@@ -62,7 +64,7 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 						{
 							projects.map((obj: IProject) => {
 								return (
-									<li key={obj.id} onClick={() => pushProduct(obj.id!)}>
+									<li key={obj.id} onClick={() => pushProduct(obj.id)}>
 										<span className='my-dropdown-label'>{obj.title}</span>
 									</li>
 								)

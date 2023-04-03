@@ -183,12 +183,12 @@ input[type="radio"], span::before, span::after {
 	display: none;
 }
 
-[type="radio"]:not(:checked) + span, [type="radio"]:checked + span {
+input[type="radio"]:not(:checked) + span, [type="radio"]:checked + span {
 	padding: 5px 10px;
 	font-size: 1rem;
 }
 
-[type="radio"]:checked + span {
+input[type="radio"]:checked + span {
 	font-weight: bold;
 	color: #73CA30;
 } 
@@ -240,6 +240,22 @@ iframe {
 	color: #351BA9;
 }
 
+.count-btn, 
+.count-btn:hover,
+.count-btn:active,
+.count-btn:focus {
+	width: 1rem;
+	height: 1rem;
+	background: transparent;
+	color: #F2D131;
+	border: none;
+	cursor: pointer;
+}
+
+.count-btn i {
+	transform: translateX(-40%) translateY(-30%);
+}
+
 .cabinet {
 	display: flex;
 	justify-content: center;
@@ -263,7 +279,7 @@ iframe {
 	width: 15rem;
 }
 
-.my-btn-white:hover {
+.my-btn-white:hover, .my-btn-white:active, .my-btn-white:focus {
 	background-color: #fff;
 }
 
@@ -273,7 +289,7 @@ iframe {
 	border-radius: 6px;
 	width: 15rem;
 }
-.my-btn-blue:hover {
+.my-btn-blue:hover, .my-btn-blue:active, .my-btn-blue:focus {
 	background-color: #351BA9;
 }
 
@@ -283,7 +299,7 @@ iframe {
 	border-radius: 6px;
 	width: 15rem;
 }
-.my-btn-red:hover {
+.my-btn-red:hover, .my-btn-red:active, .my-btn-red:focus {
 	background-color: #C81818;
 }
 

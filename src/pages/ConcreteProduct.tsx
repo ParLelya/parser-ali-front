@@ -28,17 +28,20 @@ const ConcreteProduct: React.FC = () => {
 	}, [isAuth])
 
 	const { id } = useParams()
-	const [item, setItem] = useState<IProductItem>({ id: 0, name: '', images: '', unique_id: '', parameters: '', additional_parameters: '' })
+	const [item, setItem] = useState<IProductItem>({ id: 0, name: '', images: '', unique_id: '', from_whom: '', prices: '', parameters: '', additional_parameters: '' })
 	const [param, setParam] = useState<IParamsObj[]>()
-	
+
 
 	useEffect(() => {
 		$api.get<IProductItem>(`/api/products/${id}/`)
 			.then(response => {
 				const name = response.data.name
+				const from_whom = response.data.from_whom
 				const unique_id = response.data.unique_id
 				const additional_parameters = response.data.additional_parameters
 
+				const prices = response.data.prices //сделать массив и развернуть его
+				
 				const images = response.data.images
 				const fixedImages = images.replace(/\'/g, '\"')
 				const parsedImages = JSON.parse(fixedImages)
@@ -55,6 +58,8 @@ const ConcreteProduct: React.FC = () => {
 					name: name,
 					images: url,
 					unique_id: unique_id,
+					from_whom: from_whom,
+					prices: prices,
 					parameters: parameters,
 					additional_parameters: additional_parameters
 				}
@@ -89,6 +94,7 @@ const ConcreteProduct: React.FC = () => {
 															name={item.title}
 														/>
 														<span>{detail.name}</span>
+														{/* <span>{item.prices[id]}</span> */}
 													</label>
 												</p>
 											))

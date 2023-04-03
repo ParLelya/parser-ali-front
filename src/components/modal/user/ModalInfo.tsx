@@ -16,9 +16,21 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 
-	const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+	function patchUsername(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
 		event.preventDefault()
-		dispatch(patchUserInfo({ email, password, username }))
+		dispatch(patchUserInfo({ username }))
+		setOpen(false)
+	}
+
+	function patchEmail(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+		event.preventDefault()
+		dispatch(patchUserInfo({ email }))
+		setOpen(false)
+	}
+
+	function patchPassword(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+		event.preventDefault()
+		dispatch(patchUserInfo({ password }))
 		setOpen(false)
 	}
 
@@ -33,7 +45,7 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 			>
 				<legend><h5>Введите новые данные</h5></legend>
 				<div className="row">
-					<div className="input-field col s12">
+					<div className="input-field">
 						<input
 							id="username"
 							type="text"
@@ -41,10 +53,15 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 							onChange={e => setUsername(e.target.value)}
 						/>
 						<label htmlFor="username">Введите имя пользователя</label>
+						<button
+							className='btn my-btn-blue'
+							onClick={patchUsername}
+						>Обновить имя пользователя
+						</button>
 					</div>
 				</div>
 				<div className="row">
-					<div className="input-field col s12">
+					<div className="input-field">
 						<input
 							id="email"
 							type="email"
@@ -52,10 +69,15 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 							onChange={e => setEmail(e.target.value)}
 						/>
 						<label htmlFor="email">Введите email</label>
+						<button
+							className='btn my-btn-blue'
+							onClick={patchEmail}
+						>Обновить емейл
+						</button>
 					</div>
 				</div>
 				<div className="row">
-					<div className="input-field col s12">
+					<div className="input-field">
 						<input
 							id="password"
 							type="password"
@@ -63,14 +85,14 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 							onChange={e => setPassword(e.target.value)}
 						/>
 						<label htmlFor="password">Введите пароль</label>
+						<button
+							className='btn my-btn-blue'
+							onClick={patchPassword}
+						>Обновить пароль
+						</button>
 					</div>
 				</div>
-				<div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-					<button
-						className='btn my-btn-blue'
-						type='submit'
-						onClick={handleSubmit}
-					>Обновить данные</button>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<button
 						className='btn my-btn-white'
 						type='reset'
