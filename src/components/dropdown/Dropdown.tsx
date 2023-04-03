@@ -41,7 +41,7 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 		.then(response => {
 			return response.data
 		})
-			.catch(error => console.error(error.message))
+		.catch(error => console.error(error.message))
 		setOpen(!open)
 	}
 

@@ -28,7 +28,15 @@ const ConcreteProduct: React.FC = () => {
 	}, [isAuth])
 
 	const { id } = useParams()
-	const [item, setItem] = useState<IProductItem>({ id: 0, name: '', images: '', unique_id: '', from_whom: '', prices: '', parameters: '', additional_parameters: '' })
+	const [item, setItem] = useState<IProductItem>({ 
+		id: 0, name: '', 
+		images: '', 
+		unique_id: '', 
+		from_whom: '', 
+		prices: '', 
+		parameters: '', 
+		additional_parameters: '' 
+	})
 	const [param, setParam] = useState<IParamsObj[]>()
 
 

@@ -8,12 +8,14 @@ const ConcreteProject: React.FC = () => {
 	const { id } = useParams()
 	const redirect = useNavigate()
 
-	const [products, setProducts] = useState<IProjectItem["products"]>([{ title: "", parameters: "", from_whom: "", count: 0 }])
+	const [projectName, setProjectName] = useState('')
+	const [products, setProducts] = useState<IProjectItem["products"]>([{id: 0, title: "", parameters: "", from_whom: "", count: 0 }])
 
 	useEffect(() => {
 		$api.get<IProjectItem>(`/api/projects/${id}/`)
 			.then(response => {
 				setProducts(response.data.products)
+				setProjectName(response.data.title)
 			})
 			.catch(error => console.log(error.message))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -28,17 +30,18 @@ const ConcreteProject: React.FC = () => {
 
 	const rowRef = useRef<HTMLTableRowElement | null>(null)
 	const deleteProduct = (id: number) => {
-		$api.delete(`/api/product_project/${id + 1}/`)
+		$api.delete(`/api/product_project/${id}/`)
 			.then(() => (rowRef.current?.remove()))
 			.catch(error => console.error(error.message))
 	}
 
 	const downloadCSV = () => {
-		
+
 	}
 
 	return (
 		<div className='project' ref={divRef}>
+			<h1>{projectName}</h1>
 			<table className='highlight centered' style={{ width: '100%' }}>
 				<thead style={{ height: '15mm' }}>
 					<tr>
@@ -58,20 +61,27 @@ const ConcreteProject: React.FC = () => {
 										{id + 1}<br />
 										<button
 											className='btn my-btn-red'
-											onClick={() => deleteProduct(id)}
-											style={{ fontSize: '.8rem', width: '50%' }}
+											onClick={() => deleteProduct(obj.id)}
+											style={{
+												fontSize: '.8rem',
+												width: '50%',
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'center',
+												margin: '0 auto'
+											}}
 										>
-											<i className="material-icons" style={{ transform: 'translateX(-10%)' }}>delete</i>
+											<i className="material-icons">delete</i>
 										</button>
 									</td>
 									<td>{obj.title}</td>
 									<td style={{ height: '100%', margin: 'auto 0' }}>
-										<div style={{display: 'flex', justifyContent: 'space-between'}}>
-											<button className='count-btn' onClick={() => { obj.count-- }}>
+										<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+											<button className='count-btn' onClick={() => { return obj.count - 1 }}>
 												<i className="material-icons">remove_circle_outline</i>
 											</button>
 											<span style={{ margin: 'auto .5rem' }}>{obj.count}</span>
-											<button className='count-btn' onClick={() => { obj.count++ }}>
+											<button className='count-btn' onClick={() => { return obj.count + 1 }}>
 												<i className="material-icons">add_circle_outline</i>
 											</button>
 										</div>

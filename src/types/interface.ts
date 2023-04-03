@@ -21,6 +21,7 @@ export interface IProject {
 export interface IProjectItem extends IProject {
 	products: [
 		{
+		  id: number
 		  title: string
 		  parameters: string
 		  count: number
