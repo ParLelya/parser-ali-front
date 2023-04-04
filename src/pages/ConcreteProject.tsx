@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import $api from '../http'
 import { IProjectItem } from '../types/interface'
 import { useNavigate, useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const ConcreteProject: React.FC = () => {
 
@@ -9,7 +10,8 @@ const ConcreteProject: React.FC = () => {
 	const redirect = useNavigate()
 
 	const [projectName, setProjectName] = useState('')
-	const [products, setProducts] = useState<IProjectItem["products"]>([{id: 0, title: "", parameters: "", from_whom: "", count: 0 }])
+	const [products, setProducts] = useState<IProjectItem["products"]>([{ id: 0, title: "", parameters: "", from_whom: "", count: 0 }])
+	const [count, setCount] = useState(1)
 
 	useEffect(() => {
 		$api.get<IProjectItem>(`/api/projects/${id}/`)
@@ -77,16 +79,24 @@ const ConcreteProject: React.FC = () => {
 									<td>{obj.title}</td>
 									<td style={{ height: '100%', margin: 'auto 0' }}>
 										<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-											<button className='count-btn' onClick={() => { return obj.count - 1 }}>
+											<button className='count-btn' onClick={() => { setCount(prev => prev - 1) }}>
 												<i className="material-icons">remove_circle_outline</i>
 											</button>
-											<span style={{ margin: 'auto .5rem' }}>{obj.count}</span>
-											<button className='count-btn' onClick={() => { return obj.count + 1 }}>
+											<span style={{ margin: 'auto .5rem' }}>{count}</span>
+											<button className='count-btn' onClick={() => { setCount(prev => prev + 1) }}>
 												<i className="material-icons">add_circle_outline</i>
 											</button>
 										</div>
 									</td>
-									<td>{obj.parameters}</td>
+									<td>
+										{
+											JSON.stringify(obj.parameters)
+												.replace(/\\|"|'|\{|\}|\[|\]|:|,/g, '')
+												.replace('title', `\n`)
+												.replace('info', ':')
+												.replace('name', ' ')
+										}
+									</td>
 									<td>{obj.from_whom}</td>
 								</tr>
 							)
@@ -94,6 +104,7 @@ const ConcreteProject: React.FC = () => {
 					}
 				</tbody>
 			</table>
+			<Link to='/projects' className='btn btn-small my-btn-white' style={{width: '20rem'}}>Вернуться к списку проектов</Link>
 			<button className='btn btn-small my-btn-blue' onClick={downloadCSV}>Скачать таблицу</button>
 			<button className='btn btn-small my-btn-red' onClick={handleDelete}>Удалить проект</button>
 		</div>

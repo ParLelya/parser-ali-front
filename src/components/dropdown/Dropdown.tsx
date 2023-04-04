@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import $api from '../../http'
-import { IProductItem, IProject } from '../../types/interface'
+import { IProductItem, IProject, parameters } from '../../types/interface'
 import './Dropdown.css'
 
 interface IProductInProject {
 	title: string
-	parameters: string
+	parameters: parameters | parameters[]
 	from_whom: string
 	count: number
 	project: number
@@ -14,6 +14,8 @@ interface IProductInProject {
 
 const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 
+	console.log(parameters);
+	
 	const defaultItems: IProject[] = [{ id: 0, title: '' }]
 	const [projects, setProjects]: [IProject[], (items: IProject[]) => void] = useState(defaultItems)
 	const [open, setOpen] = useState(false)
@@ -32,7 +34,7 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 		setSelectedProject(index)
 		$api.post<IProductInProject>(`/api/product_project/`, {
 			"title": name,
-			"parameters": parameters,
+			"parameters": JSON.stringify(parameters),
 			"from_whom": 'Ali',
 			"count": 1,
 			"price": 0,

@@ -1,31 +1,39 @@
 export interface IProduct {
-		id: number
+		id: number;
+		name: string;
+		images: string;
+}
+
+export type parameters = {
+	title: string;
+	info: {
 		name: string
-		images: string
+		id?: string | number 
+	};
 }
 
 export interface IProductItem extends IProduct {
-	unique_id: string
-	from_whom: string
-	prices: string
-	parameters: string
-	additional_parameters: string
+	unique_id: string;
+	from_whom: string;
+	prices: string;
+	parameters: string | parameters | parameters[];
+	additional_parameters: string;
 }
 
 export interface IProject {
-	id: number
-	title: string
-	user?: number
+	id: number;
+	title: string;
+	user?: number;
 }
 
 export interface IProjectItem extends IProject {
 	products: [
 		{
-		  id: number
-		  title: string
-		  parameters: string
-		  count: number
-		  from_whom: string
+		  id: number;
+		  title: string;
+		  parameters: string | parameters | parameters[];
+		  count: number;
+		  from_whom: string;
 		}
-	  ]
+	  ];
 }
