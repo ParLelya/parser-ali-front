@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import { IProductItem, parameters } from '../types/interface';
 import $api from '../http';
@@ -84,6 +84,7 @@ const ConcreteProduct: React.FC = () => {
 		const hasParam = selectedParam.some(
 			({title: existTitle}) => existTitle === title
 		)
+
 		if (hasParam) {
 			newParamsArr = selectedParam.map((existParam) => {
 				if (title === existParam.title) {
@@ -100,6 +101,7 @@ const ConcreteProduct: React.FC = () => {
 			}
 			newParamsArr = [...selectedParam, newParam]
 		}
+		
 		setSelectedParam(newParamsArr)
 	}
 

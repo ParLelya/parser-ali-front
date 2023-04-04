@@ -91,13 +91,14 @@ const ConcreteProject: React.FC = () => {
 											</button>
 										</div>
 									</td>
-									<td>
+									<td style={{whiteSpace: 'pre-wrap'}}>
 										{
 											JSON.stringify(obj.parameters)
 												.replace(/\\|"|'|\{|\}|\[|\]|:|,/g, '')
-												.replace('title', `\n`)
-												.replace('info', ':')
-												.replace('name', ' ')
+												.replace('title', '')
+												.replaceAll('title', `\n`)
+												.replaceAll('info', ':')
+												.replaceAll('name', ' ')
 										}
 									</td>
 									<td>{obj.from_whom}</td>
