@@ -13,8 +13,10 @@ const Footer: React.FC = () => {
 					<div className="col m6 s12">
 						<h5>Links</h5>
 						<ul>
-							<li><a href="#!">Link 1</a></li>
-							<li><a href="#!">Link 2</a></li>
+							{/* eslint-disable-next-line react/jsx-no-target-blank */}
+							<li><a href="https://github.com/ParLelya/parser-ali-front" target='_blank'>Github frontend</a></li>
+							{/* eslint-disable-next-line react/jsx-no-target-blank */}
+							<li><a href="https://github.com/Cirilus/ParserAli" target='_blank'>Github backend</a></li>
 						</ul>
 					</div>
 				</div>
