@@ -78,16 +78,29 @@ const ConcreteProduct: React.FC = () => {
 
 	const [selectedParam, setSelectedParam] = useState<parameters[]>([])
 
-	const selectedParams: parameters[] = []
-
 	const selectParams = (title: string, name: string) => {
-		selectedParams.push({
-			title: title,
-			info: {
-				name: name
+		let newParamsArr
+
+		const hasParam = selectedParam.some(
+			({title: existTitle}) => existTitle === title
+		)
+		if (hasParam) {
+			newParamsArr = selectedParam.map((existParam) => {
+				if (title === existParam.title) {
+					existParam.info.name = name
+				}
+				return existParam
+			})
+		} else {
+			const newParam = {
+				title: title,
+				info: {
+					name: name
+				}
 			}
-		})
-		setSelectedParam(selectedParams)
+			newParamsArr = [...selectedParam, newParam]
+		}
+		setSelectedParam(newParamsArr)
 	}
 
 	return (
