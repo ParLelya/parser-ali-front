@@ -30,10 +30,13 @@ const ConcreteProject: React.FC = () => {
 		redirect('/projects')
 	}
 
-	const rowRef = useRef<HTMLTableRowElement | null>(null)
 	const deleteProduct = (id: number) => {
 		$api.delete(`/api/product_project/${id}/`)
-			.then(() => (rowRef.current?.remove()))
+			.then(() => {
+				setProducts(products.filter(
+					product => product.id !== id
+				) as IProjectItem["products"])
+			})
 			.catch(error => console.error(error.message))
 	}
 
@@ -58,7 +61,7 @@ const ConcreteProject: React.FC = () => {
 					{
 						products.map((obj, id: number) => {
 							return (
-								<tr key={id} ref={rowRef}>
+								<tr key={obj.id}>
 									<td>
 										{id + 1}<br />
 										<button

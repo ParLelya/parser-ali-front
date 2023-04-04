@@ -77,20 +77,16 @@ const ConcreteProduct: React.FC = () => {
 	}, [])
 
 	const [selectedParam, setSelectedParam] = useState<parameters[]>([])
-	const inputRef = useRef<HTMLInputElement | null>(null)
 
 	const selectedParams: parameters[] = []
 
 	const selectParams = (title: string, name: string) => {
-		if (inputRef.current?.checked) {
-			selectedParams.push({
-				title: title,
-				info: {
-					name: name
-				}
-			})
-		}
-		console.log(selectedParams)
+		selectedParams.push({
+			title: title,
+			info: {
+				name: name
+			}
+		})
 		setSelectedParam(selectedParams)
 	}
 
@@ -116,9 +112,12 @@ const ConcreteProduct: React.FC = () => {
 													<p key={id} className='parameter-button'>
 														<label className='parameter-label'>
 															<input
-																ref={inputRef}
 																id={detail.id}
-																onChange={() => selectParams(item.title, detail.name)}
+																value={detail.name}
+																onChange={(event) => {
+																	const valueFromRadio = event.target.value
+																	selectParams(item.title, valueFromRadio)
+																}}
 																type="radio"
 																name={item.title}
 															/>
