@@ -27,13 +27,11 @@ export interface IProject {
 }
 
 export interface IProjectItem extends IProject {
-	products: [
-		{
+	products: [{
 		  id: number;
 		  title: string;
 		  parameters: string | parameters | parameters[];
 		  count: number;
 		  from_whom: string;
-		}
-	  ];
+		}];
 }
