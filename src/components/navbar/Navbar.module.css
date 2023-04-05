@@ -3,7 +3,10 @@
 	box-shadow: none;
 }
 
-.nav_to_cab {
+.navbar li a {
 	color: #351BA9 !important;
+}
+
+.nav_to_cab {
 	border-radius: 0 30px 0 0;
 }

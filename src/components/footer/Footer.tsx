@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
 						<p>with love</p>
 					</div>
 					<div className="col m6 s12">
-						<h5>Links</h5>
+						<h5>Ссылки</h5>
 						<ul>
 							{/* eslint-disable-next-line react/jsx-no-target-blank */}
 							<li><a href="https://github.com/ParLelya/parser-ali-front" target='_blank'>Github frontend</a></li>

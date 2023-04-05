@@ -15,6 +15,11 @@ const Navbar: React.FC = () => {
 				</Link>
 				<ul id="nav-mobile" className="right">
 					<li>
+						<Link to="/">
+							Главная
+						</Link>
+					</li>
+					<li>
 						<Link to="/cabinet" className={classes.nav_to_cab}>
 							Личный кабинет
 						</Link>
