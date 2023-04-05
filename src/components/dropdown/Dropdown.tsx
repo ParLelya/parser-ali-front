@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import $api from '../../http'
 import { IProductItem, IProject, parameters } from '../../types/interface'
 import './Dropdown.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IProductInProject {
 	title: string
@@ -41,9 +43,12 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 			"project": selectedProject,
 		})
 		.then(response => {
+			toast.success('Успешно добавлено в проект')
 			return response.data
 		})
-		.catch(error => console.error(error.message))
+		.catch(error => {
+			toast.error(`При отправке произошла ошибка: ${error.message}`)
+		})
 		setOpen(!open)
 	}
 
@@ -75,6 +80,18 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 					</ul>
 				</div>
 			}
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 		</div>
 	)
 }
