@@ -28,9 +28,8 @@ const ModalProject: React.FC<IModalProps> = ({ open, setOpen }) => {
 			onClick={() => setOpen(false)}
 		>
 			<form
-				className="my-modal"
+				className="my-modal modal-project"
 				onClick={e => e.stopPropagation()}
-				style={{ height: '30vh' }}
 			>
 				<legend><h5>Создание нового проекта</h5></legend>
 				<div className="row">

@@ -40,7 +40,7 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 			onClick={() => setOpen(false)}
 		>
 			<form
-				className="my-modal"
+				className="my-modal modal-user"
 				onClick={e => { e.stopPropagation() }}
 			>
 				<legend><h5>Введите новые данные</h5></legend>
@@ -53,12 +53,12 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 							onChange={e => setUsername(e.target.value)}
 						/>
 						<label htmlFor="username">Введите имя пользователя</label>
-						<button
+					</div>
+					<button
 							className='btn my-btn-blue'
 							onClick={patchUsername}
 						>Обновить имя пользователя
 						</button>
-					</div>
 				</div>
 				<div className="row">
 					<div className="input-field">
@@ -69,12 +69,12 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 							onChange={e => setEmail(e.target.value)}
 						/>
 						<label htmlFor="email">Введите email</label>
-						<button
+					</div>
+					<button
 							className='btn my-btn-blue'
 							onClick={patchEmail}
 						>Обновить емейл
 						</button>
-					</div>
 				</div>
 				<div className="row">
 					<div className="input-field">
@@ -85,12 +85,12 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 							onChange={e => setPassword(e.target.value)}
 						/>
 						<label htmlFor="password">Введите пароль</label>
-						<button
+					</div>
+					<button
 							className='btn my-btn-blue'
 							onClick={patchPassword}
 						>Обновить пароль
 						</button>
-					</div>
 				</div>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<button

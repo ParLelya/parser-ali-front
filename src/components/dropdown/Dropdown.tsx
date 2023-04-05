@@ -16,8 +16,6 @@ interface IProductInProject {
 
 const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 
-	console.log(parameters);
-	
 	const defaultItems: IProject[] = [{ id: 0, title: '' }]
 	const [projects, setProjects]: [IProject[], (items: IProject[]) => void] = useState(defaultItems)
 	const [open, setOpen] = useState(false)
