@@ -15,7 +15,7 @@ const Registration: React.FC = () => {
 	const redirect = useNavigate()
 
 	useEffect(() => {
-		if (!isAuth) {
+		if (isAuth) {
 			redirect('/cabinet')
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
