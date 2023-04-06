@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { IProjectItem } from '../types/interface'
+import { IProjectItem, parameters } from '../types/interface'
 
 export interface ProductState {
   totalPrice: number
   totalProductsCount: number
-  products: IProjectItem["products"]
+  products: {
+	id: number;
+	title: string;
+	parameters: string | parameters | parameters[];
+	count: number;
+	from_whom: string;
+  }[]
 }
 
 const initialState: ProductState = {
@@ -21,7 +27,7 @@ const initialState: ProductState = {
 	}
 
 export const ProductSlice = createSlice({
-  name: 'cart',
+  name: 'product',
   initialState,
   reducers: {
     addProduct(state, action: PayloadAction<any>) {

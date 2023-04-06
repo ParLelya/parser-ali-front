@@ -4,6 +4,8 @@ import { IProjectItem } from '../types/interface'
 import { useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
+var fileDownload = require('js-file-download');
+
 const ConcreteProject: React.FC = () => {
 
 	const { id } = useParams()
@@ -41,7 +43,12 @@ const ConcreteProject: React.FC = () => {
 	}
 
 	const downloadCSV = () => {
-
+		$api.get(`https://parserali.me/api/csv/${id}/`)
+			.then(response => {
+				// console.log(response.data)
+				fileDownload(response.data, 'data.csv');
+			})
+			.catch(error => console.error(error.message))
 	}
 
 	return (
@@ -91,7 +98,7 @@ const ConcreteProject: React.FC = () => {
 											</button>
 										</div>
 									</td>
-									<td style={{whiteSpace: 'pre-wrap'}}>
+									<td style={{ whiteSpace: 'pre-wrap' }}>
 										{
 											JSON.stringify(obj.parameters)
 												.replace(/\\|"|'|\{|\}|\[|\]|:|,/g, '')
@@ -108,8 +115,14 @@ const ConcreteProject: React.FC = () => {
 					}
 				</tbody>
 			</table>
-			<Link to='/projects' className='btn btn-small my-btn-white' style={{width: '20rem'}}>Вернуться к списку проектов</Link>
-			<button className='btn btn-small my-btn-blue' onClick={downloadCSV}>Скачать таблицу</button>
+			<Link to='/projects' className='btn btn-small my-btn-white' style={{ width: '20rem' }}>Вернуться к списку проектов</Link>
+			<button				
+				className='btn btn-small my-btn-blue'
+				onClick={downloadCSV}
+				// href="#!"
+				// download
+				// target='_blank'
+			>Скачать таблицу</button>
 			<button className='btn btn-small my-btn-red' onClick={handleDelete}>Удалить проект</button>
 		</div>
 	)

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { registration } from './../slices/authSlice';
-import { useAppDispatch } from '../store/hooks';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { RootState } from '../store/store';
 
 const Registration: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -10,6 +11,16 @@ const Registration: React.FC = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	
+	const { isAuth } = useAppSelector((state: RootState) => state.auth)
+	const redirect = useNavigate()
+
+	useEffect(() => {
+		if (!isAuth) {
+			redirect('/cabinet')
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuth])
+
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
 		dispatch(registration({ email, password, username }))
