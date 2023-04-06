@@ -45,7 +45,6 @@ const ConcreteProject: React.FC = () => {
 	const downloadCSV = () => {
 		$api.get(`https://parserali.me/api/csv/${id}/`)
 			.then(response => {
-				// console.log(response.data)
 				fileDownload(response.data, 'data.csv');
 			})
 			.catch(error => console.error(error.message))
