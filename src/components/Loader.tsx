@@ -2,8 +2,54 @@ import React from 'react'
 
 const Loader: React.FC = () => {
 	return (
-		<div className="progress" style={{width: '60%', margin: '30px 0'}}>
-			<div className="indeterminate"></div>
+		<div className="preloader-wrapper big active" style={{ margin: '30px auto' }}>
+			<div className="spinner-layer spinner-blue">
+				<div className="circle-clipper left">
+					<div className="circle"></div>
+				</div>
+				<div className="gap-patch">
+					<div className="circle"></div>
+				</div>
+				<div className="circle-clipper right">
+					<div className="circle"></div>
+				</div>
+			</div>
+
+			<div className="spinner-layer spinner-red">
+				<div className="circle-clipper left">
+					<div className="circle"></div>
+				</div>
+				<div className="gap-patch">
+					<div className="circle"></div>
+				</div>
+				<div className="circle-clipper right">
+					<div className="circle"></div>
+				</div>
+			</div>
+
+			<div className="spinner-layer spinner-yellow">
+				<div className="circle-clipper left">
+					<div className="circle"></div>
+				</div>
+				<div className="gap-patch">
+					<div className="circle"></div>
+				</div>
+				<div className="circle-clipper right">
+					<div className="circle"></div>
+				</div>
+			</div>
+
+			<div className="spinner-layer spinner-green">
+				<div className="circle-clipper left">
+					<div className="circle"></div>
+				</div>
+				<div className="gap-patch">
+					<div className="circle"></div>
+				</div>
+				<div className="circle-clipper right">
+					<div className="circle"></div>
+				</div>
+			</div>
 		</div>
 	)
 }

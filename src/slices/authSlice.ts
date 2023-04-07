@@ -6,7 +6,6 @@ import axios from 'axios';
 import { API_URL } from './../http/index';
 import {Cookies} from 'react-cookie'
 
-
 export interface UserState {
   user: IUser;
   isAuth: boolean;
@@ -101,8 +100,7 @@ const initialState: UserState = {
 		  email: "user@example.com",
 		  is_active: true,
 		  staff: true
-		}
-	,
+		},
 	isAuth: false,
 	isLoading: false,
     status: null
@@ -113,7 +111,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<IUser>) => {
-      state.user = action.payload;
+    	state.user = action.payload;
     },
 	setIsAuth: (state, action: PayloadAction<boolean>) => {
 		state.isAuth = action.payload;

@@ -29,7 +29,8 @@ const ConcreteProduct: React.FC = () => {
 
 	const { id } = useParams()
 	const [item, setItem] = useState<IProductItem>({
-		id: 0, name: '',
+		id: 0,
+		name: '',
 		images: '',
 		unique_id: '',
 		from_whom: '',
@@ -82,7 +83,7 @@ const ConcreteProduct: React.FC = () => {
 		let newParamsArr
 
 		const hasParam = selectedParam.some(
-			({title: existTitle}) => existTitle === title
+			({ title: existTitle }) => existTitle === title
 		)
 
 		if (hasParam) {
@@ -101,7 +102,7 @@ const ConcreteProduct: React.FC = () => {
 			}
 			newParamsArr = [...selectedParam, newParam]
 		}
-		
+
 		setSelectedParam(newParamsArr)
 	}
 

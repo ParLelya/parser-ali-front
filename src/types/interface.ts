@@ -15,7 +15,7 @@ export type parameters = {
 export interface IProductItem extends IProduct {
 	unique_id: string;
 	from_whom: string;
-	prices: string;
+	prices?: string;
 	parameters: string | parameters | parameters[];
 	additional_parameters: string;
 }
@@ -27,11 +27,12 @@ export interface IProject {
 }
 
 export interface IProjectItem extends IProject {
-	products: [{
+	products: {
 		  id: number;
 		  title: string;
 		  parameters: string | parameters | parameters[];
 		  count: number;
+		  price?: number,
 		  from_whom: string;
-		}];
+		}[];
 }

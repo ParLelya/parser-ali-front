@@ -9,6 +9,7 @@ import { useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 
 const Products: React.FC = () => {
+
 	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
@@ -18,6 +19,7 @@ const Products: React.FC = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuth])
+
 	const [isLoading, setIsLoading] = useState(true)
 	const defaultItems: IProduct[] = [{ id: 0, name: '', images: '' }]
 	const [products, setProducts] = useState<IProduct[]>(defaultItems)
@@ -57,7 +59,7 @@ const Products: React.FC = () => {
 	})
 
 	if (!products.length) {
-		return <h3 style={{color: 'black', textShadow: '0px 2px 4px white'}}>Список продуктов пуст :(</h3>
+		return <h3 style={{ color: 'black', textShadow: '0px 2px 4px white' }}>Список продуктов пуст :(</h3>
 	}
 
 	return (
