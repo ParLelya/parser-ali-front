@@ -4,6 +4,10 @@ import { IProductItem, IProject, parameters } from '../../types/interface'
 import './Dropdown.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { RootState } from '../../store/store';
+import { getProjects } from '../../slices/projectSlice';
+import Loader from '../Loader';
 
 interface IProductInProject {
 	title: string
@@ -14,41 +18,37 @@ interface IProductInProject {
 	price: number
 }
 
-const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
+const Dropdown: React.FC<IProductItem> = ({ name, parameters }) => {
 
-	const defaultItems: IProject[] = [{ id: 0, title: '' }]
-	const [projects, setProjects]: [IProject[], (items: IProject[]) => void] = useState(defaultItems)
+	const dispatch = useAppDispatch()
+	const { projects, isLoading } = useAppSelector((state: RootState) => state.projects)
 	const [open, setOpen] = useState(false)
-	const [selectedProject, setSelectedProject] = useState(0)
 
 	const handleClick = () => {
-		$api.get(`/api/projects/`)
-			.then(response => {
-				setProjects(response.data)
-			})
-			.catch(error => console.error(error.message))
+		dispatch(getProjects())
 		setOpen(!open)
 	}
 
-	const pushProduct = (index: number) => {
-		setSelectedProject(index)
+	const pushProduct = (id: number) => {
 		$api.post<IProductInProject>(`/api/product_project/`, {
 			"title": name,
 			"parameters": JSON.stringify(parameters),
-			"from_whom": 'Ali',
+			"from_whom": 'AliExpress',
 			"count": 1,
 			"price": 0,
-			"project": selectedProject,
+			"project": id,
 		})
-		.then(response => {
-			toast.success('Успешно добавлено в проект')
-			return response.data
-		})
-		.catch(error => {
-			toast.error(`При отправке произошла ошибка: ${error.message}`)
-		})
+			.then(response => {
+				toast.success('Успешно добавлено в проект')
+				return response.data
+			})
+			.catch(error => {
+				toast.error(`При отправке произошла ошибка: ${error.message}`)
+			})
 		setOpen(!open)
 	}
+
+	if (isLoading) return <Loader />
 
 	return (
 		<div className='my-dropdown'>
@@ -58,8 +58,14 @@ const Dropdown: React.FC<IProductItem> = ({name, parameters}) => {
 			>
 				{
 					open
-						? <i className="material-icons" style={{ fontSize: '1.5rem', transform: 'translateY(10%)' }}>arrow_drop_up</i>
-						: <i className="material-icons" style={{ fontSize: '1.5rem', transform: 'translateY(10%)' }}>arrow_drop_down</i>
+						? <i
+							className="material-icons"
+							style={{ fontSize: '1.5rem', transform: 'translateY(10%)' }}
+						>arrow_drop_up</i>
+						: <i
+							className="material-icons"
+							style={{ fontSize: '1.5rem', transform: 'translateY(10%)' }}
+						>arrow_drop_down</i>
 				}
 				<span>Добавить к проекту</span>
 			</button>

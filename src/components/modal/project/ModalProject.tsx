@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import '../Modal.css'
-import $api from '../../../http'
-import { useAppSelector } from '../../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { RootState } from '../../../store/store'
+import { createProject } from '../../../slices/projectSlice'
+import Loader from '../../Loader'
 
 interface IModalProps {
 	open: boolean
@@ -12,15 +13,18 @@ interface IModalProps {
 
 const ModalProject: React.FC<IModalProps> = ({ open, setOpen }) => {
 
-	const { id } = useAppSelector((state: RootState) => state.auth.user.id)
+	const dispatch = useAppDispatch()
+	const { isLoading } = useAppSelector((state: RootState) => state.projects)
+	const { id } = useAppSelector((state: RootState) => state.auth.user)
 	const [title, setTitle] = useState<string>('')
 
 	const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
-		$api.post(`/api/projects/`, { title, id })
-			.catch(error => console.log(error.message))
+		dispatch(createProject({ title: title, user: id }))
 		setOpen(false)
 	}
+
+	if (isLoading) return <Loader />
 
 	return (
 		<div
