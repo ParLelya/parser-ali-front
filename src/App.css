@@ -232,11 +232,12 @@ iframe {
 .project-card.create-project{
 	background-color: rgba(237, 237, 237, 0.5);
 	color: grey;
+	border: 2px dashed grey;
 }
 
 .create-project:hover {
 	box-shadow: 0px 2px 4px inset rgba(0, 0, 0, 0.3);
-	background-color: #f2d2318b;
+	background-color: #f2d23165;
 	color: #351BA9;
 }
 
@@ -338,6 +339,7 @@ iframe {
 .profile-info:hover {
 	background-color: white;
 }
+
 table, th, td {
 	color: black;
 	font-size: 1.2rem;
