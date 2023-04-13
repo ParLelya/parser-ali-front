@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { /* cookies, refreshToken, */ login } from '../slices/authSlice'
+import { cookies, refreshToken, login } from '../slices/authSlice'
 import { useAppDispatch } from '../store/hooks';
 
 const AuthForm: React.FC = () => {
@@ -11,7 +11,7 @@ const AuthForm: React.FC = () => {
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {	
 		event.preventDefault()
 		dispatch(login({ email, password }))
-		// dispatch(refreshToken(cookies.get('token')))
+		dispatch(refreshToken(cookies.get('token')))
 	}
 
 	return (
