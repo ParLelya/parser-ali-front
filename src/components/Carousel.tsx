@@ -14,7 +14,7 @@ const Carousel: React.FC<Array<string>> = (images) => {
 	});
 
 	return (
-		<div className="carousel">
+		<div className="my-carousel">
 			{
 				images.map((image: string, i: number) => {
 					const activeClass = active === i ? ' visible' : '';

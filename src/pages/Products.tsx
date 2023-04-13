@@ -31,15 +31,19 @@ const Products: React.FC = () => {
 		return Math.ceil(totalCount / limit);
 	}
 
-	useEffect(() => {
+	const fetchProducts = () => {
 		$api.get(`/api/products/?limits=${limit}&page=${page}`)
-			.then(response => {
-				setProducts(response.data.results)
-				setIsLoading(false)
-				const totalCount: number = response.data.count
-				setTotalPages(getPagesCount(totalCount, limit))
-			})
-			.catch(error => console.error(error.message))
+		.then(response => {
+			setProducts(response.data.results)
+			setIsLoading(false)
+			const totalCount: number = response.data.count
+			setTotalPages(getPagesCount(totalCount, limit))
+		})
+		.catch(error => console.error(error.message))
+	}
+
+	useEffect(() => {
+		fetchProducts()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
