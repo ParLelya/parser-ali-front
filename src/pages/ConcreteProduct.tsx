@@ -5,7 +5,7 @@ import $api from '../http';
 import { useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 // import Carousel from '../components/Carousel';
-import Dropdown from '../components/dropdown/Dropdown';
+import Dropdown from '../components/Dropdown';
 
 interface IParamsObj {
 	title: string;

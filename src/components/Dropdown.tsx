@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import $api from '../../http'
-import { IProductItem, IProject, parameters } from '../../types/interface'
-import './Dropdown.css'
+import $api from '../http'
+import { IProductItem, IProject, parameters } from '../types/interface'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { RootState } from '../../store/store';
-import { getProjects } from '../../slices/projectSlice';
-import Loader from '../Loader';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { RootState } from '../store/store';
+import { getProjects } from '../slices/projectSlice';
+import Loader from './Loader';
 
 interface IProductInProject {
 	title: string

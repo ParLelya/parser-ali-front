@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { IProject } from '../types/interface'
 import Loader from '../components/Loader'
 import ProjectCard from '../components/ProjectCard';
-import ModalProject from './../components/modal/project/ModalProject';
+import ModalProject from '../components/ModalProject';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getProjects } from '../slices/projectSlice';
 import { RootState } from '../store/store';

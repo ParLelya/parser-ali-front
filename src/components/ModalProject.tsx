@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import '../Modal.css'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { RootState } from '../../../store/store'
-import { createProject } from '../../../slices/projectSlice'
-import Loader from '../../Loader'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { RootState } from '../store/store'
+import { createProject } from '../slices/projectSlice'
+import Loader from './Loader'
 
 interface IModalProps {
 	open: boolean

@@ -1,10 +1,9 @@
 import React from 'react'
-import classes from './Footer.module.css'
 
 const Footer: React.FC = () => {
 	return (
-		<footer className={classes.footer + ' page-footer transparent'}>
-			<div className="container" style={{margin: '0'}}>
+		<footer className='footer page-footer transparent'>
+			<div className="container" style={{ margin: '0' }}>
 				<div className="row">
 					<div className="col m6 s12">
 						<h5>From OLIMP</h5>
@@ -23,7 +22,7 @@ const Footer: React.FC = () => {
 			</div>
 			<div className="footer-copyright" style={{ borderRadius: '0 0 30px 30px', alignItems: 'center', color: '#351BA9' }}>
 				<div className="container">
-					<p style={{color: '#000'}}>© 2023 Copyright Text</p>
+					<p style={{ color: '#000' }}>© 2023 OLIMP Union</p>
 				</div>
 			</div>
 		</footer>

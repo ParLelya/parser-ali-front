@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import classes from './Navbar.module.css'
 
 const Navbar: React.FC = () => {
 	return (
-		<nav className={classes.navbar + ' transparent'}>
+		<nav className='navbar transparent'>
 			<div className="nav-wrapper transparent">
 				<Link to="/" className="brand-logo" style={{left: '10px', top: '10px'}}>
 					<img
@@ -20,7 +19,7 @@ const Navbar: React.FC = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to="/cabinet" className={classes.nav_to_cab}>
+						<Link to="/cabinet" className='nav_to_cab'>
 							Личный кабинет
 						</Link>
 					</li>

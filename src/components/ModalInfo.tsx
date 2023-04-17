@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { useAppDispatch } from '../../../store/hooks'
-import { patchUserInfo } from '../../../slices/authSlice'
-import '../Modal.css'
+import { useAppDispatch } from '../store/hooks'
+import { patchUserInfo } from '../slices/authSlice'
 
 interface IModalProps {
 	open: boolean
@@ -55,10 +54,10 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 						<label htmlFor="username">Введите имя пользователя</label>
 					</div>
 					<button
-							className='btn my-btn-blue'
-							onClick={patchUsername}
-						>Обновить имя пользователя
-						</button>
+						className='btn my-btn-blue'
+						onClick={patchUsername}
+					>Обновить имя пользователя
+					</button>
 				</div>
 				<div className="row">
 					<div className="input-field">
@@ -71,10 +70,10 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 						<label htmlFor="email">Введите email</label>
 					</div>
 					<button
-							className='btn my-btn-blue'
-							onClick={patchEmail}
-						>Обновить емейл
-						</button>
+						className='btn my-btn-blue'
+						onClick={patchEmail}
+					>Обновить емейл
+					</button>
 				</div>
 				<div className="row">
 					<div className="input-field">
@@ -87,10 +86,10 @@ const ModalInfo: React.FC<IModalProps> = ({ open, setOpen }) => {
 						<label htmlFor="password">Введите пароль</label>
 					</div>
 					<button
-							className='btn my-btn-blue'
-							onClick={patchPassword}
-						>Обновить пароль
-						</button>
+						className='btn my-btn-blue'
+						onClick={patchPassword}
+					>Обновить пароль
+					</button>
 				</div>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<button
