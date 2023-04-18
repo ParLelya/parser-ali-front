@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router';
-import { IProductItem, parameters } from '../types/interface';
-import $api from '../http';
-import { useAppSelector } from '../store/hooks';
-import { RootState } from '../store/store';
+import { IProductItem, parameters } from '../../types/interface';
+import $api from '../../http';
+import { useAppSelector } from '../../store/hooks';
+import { RootState } from '../../store/store';
 // import Carousel from '../components/Carousel';
-import Dropdown from '../components/Dropdown';
+import Dropdown from '../../components/Dropdown';
 
 interface IParamsObj {
 	title: string;

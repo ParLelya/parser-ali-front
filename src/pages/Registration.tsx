@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { registration } from './../slices/authSlice';
+import { registration } from '../slices/authSlice';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { RootState } from '../store/store';
 
@@ -10,7 +10,7 @@ const Registration: React.FC = () => {
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	
+
 	const { isAuth } = useAppSelector((state: RootState) => state.auth)
 	const redirect = useNavigate()
 
@@ -25,7 +25,7 @@ const Registration: React.FC = () => {
 		event.preventDefault()
 		dispatch(registration({ email, password, username }))
 	}
-	
+
 	return (
 		<div className="auth-form">
 			<h1>Регистрация</h1>

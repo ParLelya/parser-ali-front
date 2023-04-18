@@ -1,22 +1,22 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom"
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Main from './pages/Main';
-import NotFound from './pages/NotFound';
-import Parser from './pages/Parser';
-import Products from './pages/Products';
-import ConcreteProduct from './pages/ConcreteProduct';
-import Projects from './pages/Projects';
-import ConcreteProject from './pages/ConcreteProject';
-import Cabinet from './pages/Cabinet';
-import Registration from './pages/Registration';
-import './App.css';
+import Navbar from './src/components/Navbar';
+import Footer from './src/components/Footer';
+import Main from './src/pages/Main';
+import NotFound from './src/pages/404';
+import Parser from './src/pages/Parser';
+import Products from './src/pages/products';
+import ConcreteProduct from './src/pages/products/ConcreteProduct';
+import Projects from './src/pages/projects';
+import ConcreteProject from './src/pages/projects/ConcreteProject';
+import Cabinet from './src/pages/Cabinet';
+import Registration from './src/pages/Registration';
+import '../styles/global.css';
 
 const App: React.FC = () => {
 
 	return (
-		<div className="App z-depth-3">
+		<div className="app z-depth-3">
 			<header>
 				<Navbar />
 			</header>

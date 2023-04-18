@@ -20,7 +20,7 @@ body {
 	align-items: center;
 	flex-wrap: wrap;
 	color: #351BA9 !important;
-	background-image: url('../public/olimp.png');
+	background-image: url('../../public/olimp.png');
 	background-size: 30rem;
 	background-position: bottom 0 right 0;
 	background-repeat: no-repeat;

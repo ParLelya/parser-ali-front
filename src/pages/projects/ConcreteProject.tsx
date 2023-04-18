@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
-import $api from '../http'
-import { parameters } from '../types/interface'
+import $api from '../../http'
+import { parameters } from '../../types/interface'
 import { useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { getProducts, minusCount, plusCount, removeProduct, updateProductCount } from '../slices/productSlice'
-import { RootState } from '../store/store'
-import Loader from '../components/Loader'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { getProducts, minusCount, plusCount, removeProduct, updateProductCount } from '../../slices/productSlice'
+import { RootState } from '../../store/store'
+import Loader from '../../components/Loader'
 
 var fileDownload = require('js-file-download');
 

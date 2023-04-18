@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import $api from '../http';
+import $api from '../../http';
 import { useInView } from 'react-intersection-observer';
-import { IProduct } from '../types/interface'
-import Item from '../components/Item'
-import Loader from '../components/Loader';
+import { IProduct } from '../../types/interface'
+import Item from '../../components/Item'
+import Loader from '../../components/Loader';
 import { useNavigate } from 'react-router';
-import { useAppSelector } from '../store/hooks';
-import { RootState } from '../store/store';
+import { useAppSelector } from '../../store/hooks';
+import { RootState } from '../../store/store';
 
 const Products: React.FC = () => {
 
@@ -33,13 +33,13 @@ const Products: React.FC = () => {
 
 	const fetchProducts = () => {
 		$api.get(`/api/products/?limits=${limit}&page=${page}`)
-		.then(response => {
-			setProducts(response.data.results)
-			setIsLoading(false)
-			const totalCount: number = response.data.count
-			setTotalPages(getPagesCount(totalCount, limit))
-		})
-		.catch(error => console.error(error.message))
+			.then(response => {
+				setProducts(response.data.results)
+				setIsLoading(false)
+				const totalCount: number = response.data.count
+				setTotalPages(getPagesCount(totalCount, limit))
+			})
+			.catch(error => console.error(error.message))
 	}
 
 	useEffect(() => {
