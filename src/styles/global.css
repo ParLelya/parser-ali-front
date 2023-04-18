@@ -8,7 +8,7 @@ body {
 	min-height: 100vh;
 }
 
-.App {
+.app {
   	text-align: center;
 	width: 90vw;
 	min-height: 95vh;
@@ -21,7 +21,7 @@ body {
 	flex-wrap: wrap;
 	color: #351BA9 !important;
 	background-image: url('../../public/olimp.png');
-	background-size: 30rem;
+	background-size: 30em;
 	background-position: bottom 0 right 0;
 	background-repeat: no-repeat;
 }

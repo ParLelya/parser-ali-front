@@ -1,17 +1,17 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom"
-import Navbar from './src/components/Navbar';
-import Footer from './src/components/Footer';
-import Main from './src/pages/Main';
-import NotFound from './src/pages/404';
-import Parser from './src/pages/Parser';
-import Products from './src/pages/products';
-import ConcreteProduct from './src/pages/products/ConcreteProduct';
-import Projects from './src/pages/projects';
-import ConcreteProject from './src/pages/projects/ConcreteProject';
-import Cabinet from './src/pages/Cabinet';
-import Registration from './src/pages/Registration';
-import '../styles/global.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Main from './pages/Main';
+import NotFound from './pages/404';
+import Parser from './pages/Parser';
+import Products from './pages/products';
+import ConcreteProduct from './pages/products/ConcreteProduct';
+import Projects from './pages/projects';
+import ConcreteProject from './pages/projects/ConcreteProject';
+import Cabinet from './pages/Cabinet';
+import Registration from './pages/Registration';
+import './styles/global.css';
 
 const App: React.FC = () => {
 
