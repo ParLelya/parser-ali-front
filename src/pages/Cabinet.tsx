@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import AuthForm from '../components/AuthForm'
 import Loader from '../components/Loader';
-import { cookies, refreshToken, fetchUserInfo, setIsAuth } from '../slices/authSlice';
+import { 
+	// cookies, 
+	// refreshToken, 
+	fetchUserInfo, 
+	setIsAuth 
+} from '../slices/authSlice';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { RootState } from '../store/store';
 import ModalInfo from '../components/ModalInfo';
@@ -23,7 +28,7 @@ const Cabinet: React.FC = () => {
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			dispatch(fetchUserInfo())
-			dispatch(refreshToken(cookies.get('token')))
+			// dispatch(refreshToken(cookies.get('token')))
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])

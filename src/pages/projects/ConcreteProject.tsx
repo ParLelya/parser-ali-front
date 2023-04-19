@@ -4,7 +4,13 @@ import { parameters } from '../../types/interface'
 import { useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { getProducts, minusCount, plusCount, removeProduct, updateProductCount } from '../../slices/productSlice'
+import {
+	getProducts,
+	minusCount,
+	plusCount,
+	removeProduct,
+	updateProductCount
+} from '../../slices/productSlice'
 import { RootState } from '../../store/store'
 import Loader from '../../components/Loader'
 
@@ -16,7 +22,7 @@ export type Product = {
 	parameters: string | parameters | parameters[];
 	count: number;
 	from_whom: string;
-	//   price: number;
+	price: string;
 }
 
 const ConcreteProject: React.FC = () => {
@@ -42,9 +48,6 @@ const ConcreteProject: React.FC = () => {
 		$api.delete(`/api/product_project/${id}/`)
 			.then(() => {
 				dispatch(removeProduct(id))
-				// setProducts(products.filter(
-				// 	product => product.id !== id
-				// ) as IProjectItem["products"])
 			})
 			.catch(error => console.error(error.message))
 	}
@@ -122,7 +125,7 @@ const ConcreteProject: React.FC = () => {
 												.replaceAll('name', ' ')
 										}
 									</td>
-									<td>{obj.from_whom}</td>
+									<td>{`${obj.from_whom},\n ${obj.price}`}</td>
 								</tr>
 							)
 						})

@@ -39,6 +39,7 @@ const ConcreteProduct: React.FC = () => {
 		additional_parameters: ''
 	})
 	const [params, setParams] = useState<IParamsObj[]>()
+	const [price, setPrice] = useState('')
 
 	useEffect(() => {
 		$api.get<IProductItem>(`/api/products/${id}/`)
@@ -48,7 +49,11 @@ const ConcreteProduct: React.FC = () => {
 				const unique_id = response.data.unique_id
 				const additional_parameters = response.data.additional_parameters
 
-				const prices = response.data.prices //сделать массив и развернуть его
+				const prices = response.data.prices
+				const fixedPrices = prices.replace(/'/g, '"')
+				const parsedPrices = JSON.parse(fixedPrices)
+				console.log(prices);
+				console.log(parsedPrices);
 
 				const images = response.data.images
 				const fixedImages = images.replace(/'/g, '"')
@@ -118,13 +123,13 @@ const ConcreteProduct: React.FC = () => {
 					<span className="card-title activator">{item.name}<i className="material-icons right">more_vert</i></span>
 					<div>
 						{
-							params?.map((item, index) => {
+							params?.map((param, index) => {
 								return (
 									<div className='product-info' key={index}>
-										<h6 style={{ margin: '1rem 0' }}>{item.title}</h6>
+										<h6 style={{ margin: '1rem 0' }}>{param.title}</h6>
 										<div className='parameter'>
 											{
-												item.info.map((detail, id) => (
+												param.info.map((detail, id) => (
 													<p key={id} className='parameter-button'>
 														<label className='parameter-label'>
 															<input
@@ -132,13 +137,13 @@ const ConcreteProduct: React.FC = () => {
 																value={detail.name}
 																onChange={(event) => {
 																	const valueFromRadio = event.target.value
-																	selectParams(item.title, valueFromRadio)
+																	selectParams(param.title, valueFromRadio)
+																	setPrice(item.prices[id])
 																}}
 																type="radio"
-																name={item.title}
+																name={param.title}
 															/>
 															<span>{detail.name}</span>
-															{/* <span>{item.prices[id]}</span> */}
 														</label>
 													</p>
 												))
@@ -149,6 +154,7 @@ const ConcreteProduct: React.FC = () => {
 							})
 						}
 					</div>
+					<span>{price}</span>
 				</div>
 				<div className="card-reveal">
 					<span className="card-title grey-text text-darken-4">{item.name}<i className="material-icons right">close</i></span>

@@ -15,7 +15,7 @@ export type parameters = {
 export interface IProductItem extends IProduct {
 	unique_id: string;
 	from_whom: string;
-	prices?: string;
+	prices: string;
 	parameters: string | parameters | parameters[];
 	additional_parameters: string;
 }

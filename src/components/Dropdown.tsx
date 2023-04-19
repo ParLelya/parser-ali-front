@@ -17,7 +17,7 @@ interface IProductInProject {
 	price: number
 }
 
-const Dropdown: React.FC<IProductItem> = ({ name, parameters }) => {
+const Dropdown: React.FC<IProductItem> = ({ name, parameters, prices }) => {
 
 	const dispatch = useAppDispatch()
 	const { projects, isLoading } = useAppSelector((state: RootState) => state.projects)
@@ -34,7 +34,7 @@ const Dropdown: React.FC<IProductItem> = ({ name, parameters }) => {
 			"parameters": JSON.stringify(parameters),
 			"from_whom": 'AliExpress',
 			"count": 1,
-			"price": 0,
+			"price": prices,
 			"project": id,
 		})
 			.then(response => {
