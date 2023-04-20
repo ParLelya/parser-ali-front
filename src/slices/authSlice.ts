@@ -35,12 +35,6 @@ export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: strin
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при регистрации')
 		}
-		dispatch(authSlice.actions.setUser({
-			id: response.data.id,
-			username: response.data.username,
-			email: response.data.email
-		}))
-		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
 	}
 )
@@ -54,7 +48,6 @@ export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 		}
 		localStorage.setItem('token', response.data.access)
 		cookies.set('token', response.data.refresh, {sameSite: 'none', secure: true})
-		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
   	}
 )
@@ -62,16 +55,9 @@ export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }>(
 	'auth/fetchUserInfo',
 	async (_, {rejectWithValue, dispatch}) => {
-		dispatch(authSlice.actions.setIsLoading(true))
 		const response = await UserService.getUser()
 		if (!response) {
-			dispatch(authSlice.actions.setIsLoading(false))
 			return rejectWithValue('Произошла ошибка при подгрузке данных профиля')
-		}
-		if (cookies.get('token')) {
-			dispatch(authSlice.actions.setIsAuth(true))
-			dispatch(authSlice.actions.setUser(response.data))
-			dispatch(authSlice.actions.setIsLoading(false))
 		}
 		return response.data
 	}
@@ -84,11 +70,6 @@ export const patchUserInfo = createAsyncThunk<IUser, IPatchInfo,{ rejectValue: s
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при обновлении данных')
 		}
-		dispatch(authSlice.actions.setUser({
-			username: response.data.username,
-			email: response.data.email
-		}))
-		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
 	}
 )
@@ -96,7 +77,7 @@ export const patchUserInfo = createAsyncThunk<IUser, IPatchInfo,{ rejectValue: s
 const initialState: UserState = {
 	user: {
 		  id: 0,
-		  username: "string",
+		  username: "username",
 		  email: "user@example.com",
 		  is_active: true,
 		  staff: true
@@ -140,7 +121,7 @@ export const authSlice = createSlice({
 			state.status = 'finished';
 			state.isLoading = false;
 			state.isAuth = true;
-			state.user = action.payload;	
+			setUser(action.payload);	
 		})
 		.addCase(registration.rejected, (state) => {
 			state.status = 'error';
@@ -168,8 +149,10 @@ export const authSlice = createSlice({
 		.addCase(fetchUserInfo.fulfilled, (state, action) => {
 			state.status = 'finished';
 			state.isLoading = false;
-			state.isAuth = true;
-			state.user = action.payload;
+			if (cookies.get('token')) {
+				state.isAuth = true;
+				setUser(action.payload);
+			}
 		})
 		.addCase(fetchUserInfo.rejected, (state) => {
 			state.status = 'error';
@@ -184,7 +167,7 @@ export const authSlice = createSlice({
 			state.status = 'finished';
 			state.isLoading = false;
 			state.isAuth = true;
-			state.user = action.payload;
+			setUser(action.payload);
 		})
 		.addCase(patchUserInfo.rejected, (state) => {
 			state.status = 'error';
