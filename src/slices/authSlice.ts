@@ -17,20 +17,19 @@ export const cookies = new Cookies()
 
 export const refreshToken = createAsyncThunk<string,string,{ rejectValue: string }>(
 	'auth/refreshToken',
-	async (refresh: string, {rejectWithValue, dispatch}) => {
+	async (refresh: string, {rejectWithValue}) => {
 		const response = await axios.post<string>(`${API_URL}/auth/token/refresh/`, refresh)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка авторизации')
 		}
 		localStorage.setItem('token', response.data)
-		dispatch(authSlice.actions.setIsAuth(true))
 		return response.data
 	}
 )
 
 export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: string }>(
 	'auth/registration',
-	async function (value, {rejectWithValue, dispatch}) {
+	async function (value, {rejectWithValue}) {
 		const response = await AuthService.registration(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при регистрации')
@@ -41,7 +40,7 @@ export const registration = createAsyncThunk<IUser, ISignUp,{ rejectValue: strin
 
 export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 	'auth/login',
-	async function (value: IAuth, {rejectWithValue, dispatch}) {
+	async function (value: IAuth, {rejectWithValue}) {
 		const response = await AuthService.login(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при входе в систему')
@@ -54,7 +53,7 @@ export const login = createAsyncThunk<IToken,IAuth,{ rejectValue: string }>(
 
 export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }>(
 	'auth/fetchUserInfo',
-	async (_, {rejectWithValue, dispatch}) => {
+	async (_, {rejectWithValue}) => {
 		const response = await UserService.getUser()
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при подгрузке данных профиля')
@@ -65,7 +64,7 @@ export const fetchUserInfo = createAsyncThunk<IUser,void,{ rejectValue: string }
 
 export const patchUserInfo = createAsyncThunk<IUser, IPatchInfo,{ rejectValue: string }>(
 	'auth/patchUserInfo',
-	async function (value: IPatchInfo, {rejectWithValue, dispatch}) {
+	async function (value: IPatchInfo, {rejectWithValue}) {
 		const response = await UserService.updateUser(value)
 		if (!response) {
 			return rejectWithValue('Произошла ошибка при обновлении данных')
